@@ -10,7 +10,7 @@ type Campaign struct {
 }
 
 // Members wraps a list of campaign members.
-// Members exists to satisfy the JSON structure of the API response.
+// Members exists to satisfy the API's JSON structure.
 type Members struct {
 	Data []*Member `json:"data"`
 	Sync string    `json:"sync"`
@@ -70,15 +70,15 @@ func (cs *CampaignService) Index() ([]*Campaign, error) {
 }
 
 // Get returns the Campaign corresponding with the provided ID.
-func (cs *CampaignService) Get(id int) (*Campaign, error) {
+func (cs *CampaignService) Get(campID int) (*Campaign, error) {
 	var wrap struct {
 		Data *Campaign `json:"data"`
 	}
 
-	end := cs.end.ID(id)
+	end := cs.end.ID(campID)
 	err := cs.client.get(end, &wrap)
 	if err != nil {
-		return nil, fmt.Errorf("cannot get Campaign with ID '%d': %w", id, err)
+		return nil, fmt.Errorf("cannot get Campaign with ID '%d': %w", campID, err)
 	}
 
 	return wrap.Data, nil
@@ -86,16 +86,16 @@ func (cs *CampaignService) Get(id int) (*Campaign, error) {
 
 const pathUsers string = "/users"
 
-// Members returns a list of all the members of the Campaign corresponding with
-// the provided id.
-func (cs *CampaignService) Members(id int) ([]*Member, error) {
+// Members returns a list of all members of the Campaign corresponding with the
+// provided id.
+func (cs *CampaignService) Members(memID int) ([]*Member, error) {
 	var wrap Members
 
-	end := cs.end.ID(id)
+	end := cs.end.ID(memID)
 	end = end.Append(pathUsers)
 	err := cs.client.get(end, &wrap)
 	if err != nil {
-		return nil, fmt.Errorf("cannot get Members from Campaign with ID '%d': %w", id, err)
+		return nil, fmt.Errorf("cannot get Members from Campaign with ID '%d': %w", memID, err)
 	}
 
 	return wrap.Data, nil

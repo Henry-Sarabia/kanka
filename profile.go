@@ -23,7 +23,7 @@ type ProfileService service
 // Get returns the Profile of the current user.
 func (ps *ProfileService) Get() (*Profile, error) {
 	var wrap struct {
-		Data Profile `json:"data"`
+		Data *Profile `json:"data"`
 	}
 
 	err := ps.client.get(ps.end, &wrap)
@@ -31,5 +31,5 @@ func (ps *ProfileService) Get() (*Profile, error) {
 		return nil, fmt.Errorf("cannot get Profile: %w", err)
 	}
 
-	return &wrap.Data, nil
+	return wrap.Data, nil
 }
