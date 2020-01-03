@@ -126,3 +126,28 @@ func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, 
 
 	return wrap.Data, nil
 }
+
+// Update updates an existing Character with the corresponding provided charID
+// in the Kanka campaign with the provided ID using the provided SimpleCharacter
+// data. Update returns the newly updated Character.
+func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (*Character, error) {
+	var wrap struct {
+		Data *Character `json:"data"`
+	}
+
+	end := EndpointCampaign.ID(campID)
+	end = end.Append("/" + string(cs.end))
+	end = end.ID(charID)
+
+	b, err := json.Marshal(ch)
+	if err != nil {
+		return nil, fmt.Errorf("cannot marshal SimpleCharacter named '%s': %w", ch.Name, err)
+	}
+
+	err = cs.client.put(end, bytes.NewReader(b), &wrap)
+	if err != nil {
+		return nil, fmt.Errorf("cannot update Character named '%s' for Campaign with ID '%d': '%w'", ch.Name, campID, err)
+	}
+
+	return wrap.Data, nil
+}

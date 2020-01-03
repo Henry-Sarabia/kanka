@@ -52,7 +52,7 @@ func NewClient(token string, custom *http.Client) *Client {
 }
 
 // request returns an appropriately configured HTTP request with the provided
-// method and endpoint.
+// method, endpoint, and body.
 func (c *Client) request(method string, end endpoint, body io.Reader) (*http.Request, error) {
 	url := c.rootURL + string(end)
 
@@ -107,10 +107,28 @@ func (c *Client) get(end endpoint, result interface{}) error {
 	return nil
 }
 
-// post executes a POST request to the provided endpoint and stores the
-// unmarshaled JSON result in the provided empty interface.
+// post executes a POST request to the provided endpoint with the provided body
+// and stores the unmarshaled JSON result in the provided empty interface.
 func (c *Client) post(end endpoint, body io.Reader, result interface{}) error {
 	req, err := c.request("POST", end, body)
+	if err != nil {
+		return err
+	}
+
+	req.Header.Add("Content-Type", "application/json")
+
+	err = c.send(req, result)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// put executes a PUT request to the provided endpoint with the provided body
+// and stores the unmarshaled JSON result in the provided empty interface.
+func (c *Client) put(end endpoint, body io.Reader, result interface{}) error {
+	req, err := c.request("PUT", end, body)
 	if err != nil {
 		return err
 	}
