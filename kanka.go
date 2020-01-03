@@ -142,3 +142,23 @@ func (c *Client) put(end endpoint, body io.Reader, result interface{}) error {
 
 	return nil
 }
+
+// delete executes a DELETE request to the provided endpoint.
+func (c *Client) delete(end endpoint) error {
+	req, err := c.request("DELETE", end, nil)
+	if err != nil {
+		return err
+	}
+
+	resp, err := c.http.Do(req)
+	if err != nil {
+		return fmt.Errorf("http client cannot send request with method '%s' to url '%s': %w", req.Method, req.URL.String(), err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusNoContent {
+		return fmt.Errorf("expected 204 StatusNoContent but got unexpected '%d %s'", resp.StatusCode, resp.Status)
+	}
+
+	return nil
+}

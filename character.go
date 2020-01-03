@@ -151,3 +151,18 @@ func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (
 
 	return wrap.Data, nil
 }
+
+// Delete deletes an existing Character with the provided charID in the Kanka
+// campaign with the provided ID.
+func (cs *CharacterService) Delete(campID int, charID int) error {
+	end := EndpointCampaign.ID(campID)
+	end = end.Append("/" + string(cs.end))
+	end = end.ID(charID)
+
+	err := cs.client.delete(end)
+	if err != nil {
+		return fmt.Errorf("cannot delete Character with ID '%d' for Campaign with ID '%d': %w", charID, campID, err)
+	}
+
+	return nil
+}
