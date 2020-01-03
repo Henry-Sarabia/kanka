@@ -1,12 +1,27 @@
 package kanka
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // Campaign provides simple data about a campaign.
 // For more information, visit: https://kanka.io/en-US/docs/1.0/campaigns
 type Campaign struct {
-	Entity
-	Members Members `json:"members"`
+	ID         int       `json:"id"`
+	Name       string    `json:"name"`
+	Entry      string    `json:"entry"`
+	Image      string    `json:"image"`
+	ImageFull  string    `json:"image_full"`
+	ImageThumb string    `json:"image_thumb"`
+	IsPrivate  bool      `json:"is_private"`
+	EntityID   int       `json:"entity_id"`
+	Tags       []int     `json:"tags"`
+	CreatedAt  time.Time `json:"created_at"`
+	CreatedBy  int       `json:"created_by"`
+	UpdatedAt  time.Time `json:"updated_at"`
+	UpdatedBy  int       `json:"updated_by"`
+	Members    Members   `json:"members"`
 }
 
 // Members wraps a list of campaign members.

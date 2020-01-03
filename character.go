@@ -1,20 +1,50 @@
 package kanka
 
-import "fmt"
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"time"
+)
 
-// Character provides simple data about a character.
+// Character contains information about a character.
 // For more information, visit: https://kanka.io/en-US/docs/1.0/characters
 type Character struct {
-	Entity
-	LocationID int         `json:"location_id"`
-	Title      interface{} `json:"title"`
-	Age        string      `json:"age"`
-	Sex        string      `json:"sex"`
-	RaceID     int         `json:"race_id"`
-	Type       interface{} `json:"type"`
-	FamilyID   int         `json:"family_id"`
-	IsDead     bool        `json:"is_dead"`
-	Traits     Traits      `json:"traits"`
+	SimpleCharacter
+	ID             int       `json:"id"`
+	Entry          string    `json:"entry"`
+	ImageFull      string    `json:"image_full"`
+	ImageThumb     string    `json:"image_thumb"`
+	HasCustomImage bool      `json:"has_custom_image"`
+	EntityID       int       `json:"entity_id"`
+	CreatedAt      time.Time `json:"created_at"`
+	CreatedBy      int       `json:"created_by"`
+	UpdatedAt      time.Time `json:"updated_at"`
+	UpdatedBy      int       `json:"updated_by"`
+	Traits         Traits    `json:"traits"`
+}
+
+// SimpleCharacter contains only the simple information about a character.
+// SimpleCharacter is primarily used to create new characters for posting to
+// Kanka.
+type SimpleCharacter struct {
+	Name             string   `json:"name"`
+	Title            string   `json:"title,omitempty"`
+	Age              string   `json:"age,omitempty"`
+	Sex              string   `json:"sex,omitempty"`
+	Type             string   `json:"type,omitempty"`
+	FamilyID         int      `json:"family_id,omitempty"`
+	LocationID       int      `json:"location_id,omitempty"`
+	RaceID           int      `json:"race_id,omitempty"`
+	Tags             []int    `json:"tags,omitempty"`
+	IsDead           bool     `json:"is_dead,omitempty"`
+	IsPrivate        bool     `json:"is_private,omitempty"`
+	Image            string   `json:"image,omitempty"`
+	ImageURL         string   `json:"image_url,omitempty"`
+	PersonalityName  []string `json:"personality_name,omitempty"`
+	PersonalityEntry []string `json:"personality_entry,omitempty"`
+	AppearanceName   []string `json:"appearance_name,omitempty"`
+	AppearanceEntry  []string `json:"appearance_entry,omitempty"`
 }
 
 // Traits wraps a list of character traits.
@@ -68,6 +98,30 @@ func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
 	err := cs.client.get(end, &wrap)
 	if err != nil {
 		return nil, fmt.Errorf("cannot get Character with ID '%d' from Campaign with ID '%d': %w", charID, campID, err)
+	}
+
+	return wrap.Data, nil
+}
+
+// Create creates a new Character entry in the Kanka campaign with the provided
+// ID using the provided SimpleCharacter data. Create returns the newly created
+// Character.
+func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, error) {
+	var wrap struct {
+		Data *Character `json:"data"`
+	}
+
+	end := EndpointCampaign.ID(campID)
+	end = end.Append("/" + string(cs.end))
+
+	b, err := json.Marshal(ch)
+	if err != nil {
+		return nil, fmt.Errorf("cannot marshal SimpleCharacter named '%s': %w", ch.Name, err)
+	}
+
+	err = cs.client.post(end, bytes.NewReader(b), &wrap)
+	if err != nil {
+		return nil, fmt.Errorf("cannot create Character named '%s' for Campaign with ID '%d': %w", ch.Name, campID, err)
 	}
 
 	return wrap.Data, nil

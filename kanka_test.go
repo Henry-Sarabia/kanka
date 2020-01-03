@@ -9,6 +9,7 @@ import (
 const testEndpoint endpoint = "test/"
 const testToken string = "not_a_real_token"
 
+//TODO: c.Request has a new parameter; tests should reflect this
 func TestClient_request(t *testing.T) {
 	type args struct {
 		method string
@@ -31,7 +32,7 @@ func TestClient_request(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := tt.c.request(tt.args.method, tt.args.end)
+			got, err := tt.c.request(tt.args.method, tt.args.end, nil)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Client.request() error = %v, wantErr %v", err, tt.wantErr)
 				return

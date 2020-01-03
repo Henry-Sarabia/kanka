@@ -3,6 +3,7 @@ package kanka
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 )
@@ -52,10 +53,10 @@ func NewClient(token string, custom *http.Client) *Client {
 
 // request returns an appropriately configured HTTP request with the provided
 // method and endpoint.
-func (c *Client) request(method string, end endpoint) (*http.Request, error) {
+func (c *Client) request(method string, end endpoint, body io.Reader) (*http.Request, error) {
 	url := c.rootURL + string(end)
 
-	req, err := http.NewRequest(method, url, nil)
+	req, err := http.NewRequest(method, url, body)
 	if err != nil {
 		return nil, fmt.Errorf("cannot create request with method '%s' for url '%s': %w", method, url, err)
 	}
@@ -75,6 +76,8 @@ func (c *Client) send(req *http.Request, result interface{}) error {
 	}
 	defer resp.Body.Close()
 
+	//TODO: Implement status code and error checking
+
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return fmt.Errorf("cannot read response body: %w", err)
@@ -91,10 +94,28 @@ func (c *Client) send(req *http.Request, result interface{}) error {
 // get executes a GET request to the provided endpoint and stores the
 // unmarshaled JSON result in the provided empty interface.
 func (c *Client) get(end endpoint, result interface{}) error {
-	req, err := c.request("GET", end)
+	req, err := c.request("GET", end, nil)
 	if err != nil {
 		return err
 	}
+
+	err = c.send(req, result)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// post executes a POST request to the provided endpoint and stores the
+// unmarshaled JSON result in the provided empty interface.
+func (c *Client) post(end endpoint, body io.Reader, result interface{}) error {
+	req, err := c.request("POST", end, body)
+	if err != nil {
+		return err
+	}
+
+	req.Header.Add("Content-Type", "application/json")
 
 	err = c.send(req, result)
 	if err != nil {
