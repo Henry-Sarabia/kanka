@@ -4,24 +4,23 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // Character contains information about a character.
 // For more information, visit: https://kanka.io/en-US/docs/1.0/characters
 type Character struct {
 	SimpleCharacter
-	ID             int       `json:"id"`
-	Entry          string    `json:"entry"`
-	ImageFull      string    `json:"image_full"`
-	ImageThumb     string    `json:"image_thumb"`
-	HasCustomImage bool      `json:"has_custom_image"`
-	EntityID       int       `json:"entity_id"`
-	CreatedAt      time.Time `json:"created_at"`
-	CreatedBy      int       `json:"created_by"`
-	UpdatedAt      time.Time `json:"updated_at"`
-	UpdatedBy      int       `json:"updated_by"`
-	Traits         Traits    `json:"traits"`
+	ID             int    `json:"id"`
+	Entry          string `json:"entry"`
+	ImageFull      string `json:"image_full"`
+	ImageThumb     string `json:"image_thumb"`
+	HasCustomImage bool   `json:"has_custom_image"`
+	EntityID       int    `json:"entity_id"`
+	CreatedAt      string `json:"created_at"`
+	CreatedBy      int    `json:"created_by"`
+	UpdatedAt      string `json:"updated_at"`
+	UpdatedBy      int    `json:"updated_by"`
+	Traits         Traits `json:"traits"`
 }
 
 // SimpleCharacter contains only the simple information about a character.

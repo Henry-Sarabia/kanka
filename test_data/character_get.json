@@ -1,0 +1,89 @@
+{
+    "data": {
+        "id": 116623,
+        "name": "Penny Galvenrise",
+        "entry": "\n<p>She is the key to finding Mechanus</p>\n",
+        "image": "characters/pdt4F7zJjCyxDUu2flaZXBPqwHtkhCg8fmowXV05.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/characters/pdt4F7zJjCyxDUu2flaZXBPqwHtkhCg8fmowXV05.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/characters/pdt4F7zJjCyxDUu2flaZXBPqwHtkhCg8fmowXV05_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 430214,
+        "tags": [
+            34696
+        ],
+        "created_at": "2020-01-03T01:18:30.000000Z",
+        "created_by": 5600,
+        "updated_at": "2020-01-03T01:18:30.000000Z",
+        "updated_by": 5600,
+        "location_id": 26145,
+        "title": "Tinkerer",
+        "age": "24",
+        "sex": "Female",
+        "race_id": 9477,
+        "type": "NPC",
+        "family_id": 16158,
+        "is_dead": false,
+        "traits": {
+            "data": [
+                {
+                    "id": 85283,
+                    "name": "Fears",
+                    "entry": "Meteors",
+                    "section": "personality",
+                    "is_private": false,
+                    "default_order": 0
+                },
+                {
+                    "id": 85284,
+                    "name": "Goals",
+                    "entry": "Create a world-changing invention",
+                    "section": "personality",
+                    "is_private": false,
+                    "default_order": 1
+                },
+                {
+                    "id": 85285,
+                    "name": "Mannerisms",
+                    "entry": "Goes on a lot of tangents; Speaks rapidly",
+                    "section": "personality",
+                    "is_private": false,
+                    "default_order": 2
+                },
+                {
+                    "id": 85286,
+                    "name": "Traits",
+                    "entry": "Talkative\r\nBubbly",
+                    "section": "personality",
+                    "is_private": false,
+                    "default_order": 3
+                },
+                {
+                    "id": 85287,
+                    "name": "Hair",
+                    "entry": "Pinks",
+                    "section": "appearance",
+                    "is_private": false,
+                    "default_order": 0
+                },
+                {
+                    "id": 85288,
+                    "name": "Eyes",
+                    "entry": "Green",
+                    "section": "appearance",
+                    "is_private": false,
+                    "default_order": 1
+                },
+                {
+                    "id": 85289,
+                    "name": "Skin",
+                    "entry": "Fair",
+                    "section": "appearance",
+                    "is_private": false,
+                    "default_order": 2
+                }
+            ],
+            "sync": "2020-01-03T03:05:58.661158Z"
+        }
+    }
+}
