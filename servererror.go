@@ -33,9 +33,12 @@ func isSuccess(code int) bool {
 
 // isTemporary returns true if the provided status code represents a temporary
 // error according to Kanka.
+// For more information, visit: https://kanka.io/en-US/docs/1.0/setup#endpoints
 func isTemporary(code int) bool {
 	switch code {
 	case http.StatusMisdirectedRequest:
+		return true
+	case http.StatusTooManyRequests:
 		return true
 	default:
 		return false
