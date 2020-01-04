@@ -76,7 +76,9 @@ func (c *Client) send(req *http.Request, result interface{}) error {
 	}
 	defer resp.Body.Close()
 
-	//TODO: Implement status code and error checking
+	if !isSuccess(resp.StatusCode) {
+		return &ServerError{code: resp.StatusCode, status: resp.Status, temporary: isTemporary(resp.StatusCode)}
+	}
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -156,8 +158,8 @@ func (c *Client) delete(end endpoint) error {
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusNoContent {
-		return fmt.Errorf("expected 204 StatusNoContent but got unexpected '%d %s'", resp.StatusCode, resp.Status)
+	if !isSuccess(resp.StatusCode) {
+		return &ServerError{code: resp.StatusCode, status: resp.Status, temporary: isTemporary(resp.StatusCode)}
 	}
 
 	return nil

@@ -77,7 +77,7 @@ func (cs *CharacterService) Index(campID int) ([]*Character, error) {
 
 	err := cs.client.get(end, &wrap)
 	if err != nil {
-		return nil, fmt.Errorf("cannot get Character index from Campaign with ID '%d': %w", campID, err)
+		return nil, fmt.Errorf("cannot get Character index from Campaign (ID: %d): %w", campID, err)
 	}
 
 	return wrap.Data, nil
@@ -96,7 +96,7 @@ func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
 
 	err := cs.client.get(end, &wrap)
 	if err != nil {
-		return nil, fmt.Errorf("cannot get Character with ID '%d' from Campaign with ID '%d': %w", charID, campID, err)
+		return nil, fmt.Errorf("cannot get Character (ID: %d) from Campaign (ID: %d): %w", charID, campID, err)
 	}
 
 	return wrap.Data, nil
@@ -115,12 +115,12 @@ func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, 
 
 	b, err := json.Marshal(ch)
 	if err != nil {
-		return nil, fmt.Errorf("cannot marshal SimpleCharacter named '%s': %w", ch.Name, err)
+		return nil, fmt.Errorf("cannot marshal SimpleCharacter (Name: %s): %w", ch.Name, err)
 	}
 
 	err = cs.client.post(end, bytes.NewReader(b), &wrap)
 	if err != nil {
-		return nil, fmt.Errorf("cannot create Character named '%s' for Campaign with ID '%d': %w", ch.Name, campID, err)
+		return nil, fmt.Errorf("cannot create Character (Name: %s) for Campaign (ID: %d): %w", ch.Name, campID, err)
 	}
 
 	return wrap.Data, nil
@@ -140,12 +140,12 @@ func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (
 
 	b, err := json.Marshal(ch)
 	if err != nil {
-		return nil, fmt.Errorf("cannot marshal SimpleCharacter named '%s': %w", ch.Name, err)
+		return nil, fmt.Errorf("cannot marshal SimpleCharacter (Name: %s): %w", ch.Name, err)
 	}
 
 	err = cs.client.put(end, bytes.NewReader(b), &wrap)
 	if err != nil {
-		return nil, fmt.Errorf("cannot update Character named '%s' for Campaign with ID '%d': '%w'", ch.Name, campID, err)
+		return nil, fmt.Errorf("cannot update Character (Name: %s) for Campaign (ID: %d): '%w'", ch.Name, campID, err)
 	}
 
 	return wrap.Data, nil
@@ -160,7 +160,7 @@ func (cs *CharacterService) Delete(campID int, charID int) error {
 
 	err := cs.client.delete(end)
 	if err != nil {
-		return fmt.Errorf("cannot delete Character with ID '%d' for Campaign with ID '%d': %w", charID, campID, err)
+		return fmt.Errorf("cannot delete Character (ID: %d) for Campaign (ID: %d): %w", charID, campID, err)
 	}
 
 	return nil
