@@ -1,6 +1,9 @@
 package kanka
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 type endpoint string
 
@@ -44,6 +47,10 @@ func (e endpoint) Append(s string) endpoint {
 }
 
 // ID returns an endpoint appropriately formatted with the provided id.
-func (e endpoint) ID(id int) endpoint {
-	return e.Append("/" + strconv.Itoa(id))
+func (e endpoint) ID(id int) (endpoint, error) {
+	if id < 0 {
+		return "", fmt.Errorf("provided ID (%d) cannot be negative", id)
+	}
+
+	return e.Append("/" + strconv.Itoa(id)), nil
 }

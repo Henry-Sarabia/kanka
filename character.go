@@ -72,10 +72,13 @@ func (cs *CharacterService) Index(campID int) ([]*Character, error) {
 		Data []*Character `json:"data"`
 	}
 
-	end := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.ID(campID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
+	}
 	end = end.Append("/" + string(cs.end))
 
-	err := cs.client.get(end, &wrap)
+	err = cs.client.get(end, &wrap)
 	if err != nil {
 		return nil, fmt.Errorf("cannot get Character index from Campaign (ID: %d): %w", campID, err)
 	}
@@ -90,11 +93,18 @@ func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
 		Data *Character `json:"data"`
 	}
 
-	end := EndpointCampaign.ID(campID)
-	end = end.Append("/" + string(cs.end))
-	end = end.ID(charID)
+	end, err := EndpointCampaign.ID(campID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
+	}
 
-	err := cs.client.get(end, &wrap)
+	end = end.Append("/" + string(cs.end))
+	end, err = end.ID(charID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Character ID: %w", err)
+	}
+
+	err = cs.client.get(end, &wrap)
 	if err != nil {
 		return nil, fmt.Errorf("cannot get Character (ID: %d) from Campaign (ID: %d): %w", charID, campID, err)
 	}
@@ -110,7 +120,10 @@ func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, 
 		Data *Character `json:"data"`
 	}
 
-	end := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.ID(campID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
+	}
 	end = end.Append("/" + string(cs.end))
 
 	b, err := json.Marshal(ch)
@@ -134,9 +147,16 @@ func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (
 		Data *Character `json:"data"`
 	}
 
-	end := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.ID(campID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
+	}
 	end = end.Append("/" + string(cs.end))
-	end = end.ID(charID)
+
+	end, err = end.ID(charID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Character ID: %w", err)
+	}
 
 	b, err := json.Marshal(ch)
 	if err != nil {
@@ -154,11 +174,18 @@ func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (
 // Delete deletes an existing Character with the provided charID in the Kanka
 // campaign with the provided ID.
 func (cs *CharacterService) Delete(campID int, charID int) error {
-	end := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.ID(campID)
+	if err != nil {
+		return fmt.Errorf("invalid Campaign ID: %w", err)
+	}
 	end = end.Append("/" + string(cs.end))
-	end = end.ID(charID)
 
-	err := cs.client.delete(end)
+	end, err = end.ID(charID)
+	if err != nil {
+		return fmt.Errorf("invalid Character ID: %w", err)
+	}
+
+	err = cs.client.delete(end)
 	if err != nil {
 		return fmt.Errorf("cannot delete Character (ID: %d) for Campaign (ID: %d): %w", charID, campID, err)
 	}

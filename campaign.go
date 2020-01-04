@@ -90,8 +90,12 @@ func (cs *CampaignService) Get(campID int) (*Campaign, error) {
 		Data *Campaign `json:"data"`
 	}
 
-	end := cs.end.ID(campID)
-	err := cs.client.get(end, &wrap)
+	end, err := cs.end.ID(campID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
+	}
+
+	err = cs.client.get(end, &wrap)
 	if err != nil {
 		return nil, fmt.Errorf("cannot get Campaign with ID '%d': %w", campID, err)
 	}
@@ -103,14 +107,18 @@ const pathUsers string = "/users"
 
 // Members returns a list of all members of the Campaign corresponding with the
 // provided id.
-func (cs *CampaignService) Members(memID int) ([]*Member, error) {
+func (cs *CampaignService) Members(campID int) ([]*Member, error) {
 	var wrap Members
 
-	end := cs.end.ID(memID)
-	end = end.Append(pathUsers)
-	err := cs.client.get(end, &wrap)
+	end, err := cs.end.ID(campID)
 	if err != nil {
-		return nil, fmt.Errorf("cannot get Members from Campaign with ID '%d': %w", memID, err)
+		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
+	}
+
+	end = end.Append(pathUsers)
+	err = cs.client.get(end, &wrap)
+	if err != nil {
+		return nil, fmt.Errorf("cannot get Members from Campaign with ID '%d': %w", campID, err)
 	}
 
 	return wrap.Data, nil
