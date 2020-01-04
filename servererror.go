@@ -5,13 +5,14 @@ import (
 	"net/http"
 )
 
-// ServerError represents a
+// ServerError represents an error originating from another server.
 type ServerError struct {
 	code      int
 	status    string
 	temporary bool
 }
 
+// Error returns the status message of an error.
 func (e *ServerError) Error() string {
 	return fmt.Sprintf("server responded with status '%s'", e.status)
 }
