@@ -147,8 +147,8 @@ func TestCharacterService_Get(t *testing.T) {
 			if (err != nil) != test.wantErr {
 				t.Errorf("got: <%v>, want: <%v>", err, test.wantErr)
 			}
-			if !cmp.Equal(got, test.want) {
-				t.Errorf("got: <%v>, want: <%v>", got, test.want)
+			if diff := cmp.Diff(got, test.want); diff != "" {
+				t.Errorf("mismatch (-want +got):\n%s", diff)
 			}
 		})
 	}
