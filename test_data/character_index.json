@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Jon Snow",
+            "title": "Bastard of Winterfell"
+        },
+        {
+            "name": "Sansa Stark",
+            "title": "Lady of Winterfell"
+        },
+        {
+            "name": "Daenerys Targaryen",
+            "title": "Mother of Dragons"
+        }
+    ]
+}

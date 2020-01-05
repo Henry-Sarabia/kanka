@@ -11,8 +11,9 @@ import (
 )
 
 const (
-	testFileEmpty    string = "test_data/empty.json"
-	testCharacterGet string = "test_data/character_get.json"
+	testFileEmpty      string = "test_data/empty.json"
+	testCharacterGet   string = "test_data/character_get.json"
+	testCharacterIndex string = "test_data/character_index.json"
 )
 
 func testClient(status int, resp io.Reader) (*Client, *httptest.Server) {
@@ -25,6 +26,116 @@ func testClient(status int, resp io.Reader) (*Client, *httptest.Server) {
 	c.rootURL = ts.URL + "/"
 
 	return c, ts
+}
+
+func TestCharacterService_Index(t *testing.T) {
+	chars := []*Character{
+		&Character{
+			SimpleCharacter: SimpleCharacter{
+				Name:  "Jon Snow",
+				Title: "Bastard of Winterfell",
+			},
+		},
+		&Character{
+			SimpleCharacter: SimpleCharacter{
+				Name:  "Sansa Stark",
+				Title: "Lady of Winterfell",
+			},
+		},
+		&Character{
+			SimpleCharacter: SimpleCharacter{
+				Name:  "Daenerys Targaryen",
+				Title: "Mother of Dragons",
+			},
+		},
+	}
+	type args struct {
+		campID int
+	}
+	tests := []struct {
+		name    string
+		status  int
+		file    string
+		args    args
+		want    []*Character
+		wantErr bool
+	}{
+		{
+			name:    "StatusOK, valid response, valid args",
+			status:  http.StatusOK,
+			file:    testCharacterIndex,
+			args:    args{campID: 5272},
+			want:    chars,
+			wantErr: false,
+		},
+		{
+			name:    "Status OK, valid response, invalid args",
+			status:  http.StatusOK,
+			file:    testCharacterIndex,
+			args:    args{campID: -123},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, empty response, valid args",
+			status:  http.StatusOK,
+			file:    testFileEmpty,
+			args:    args{campID: 5272},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, empty response, invalid args",
+			status:  http.StatusOK,
+			file:    testFileEmpty,
+			args:    args{campID: -123},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusUnauthorized, valid args",
+			status:  http.StatusUnauthorized,
+			file:    testFileEmpty,
+			args:    args{campID: 5272},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusForbidden, valid args",
+			status:  http.StatusForbidden,
+			file:    testFileEmpty,
+			args:    args{campID: 5272},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusNotFound, valid args",
+			status:  http.StatusNotFound,
+			file:    testFileEmpty,
+			args:    args{campID: 5272},
+			want:    nil,
+			wantErr: true,
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			f, err := os.Open(test.file)
+			if err != nil {
+				t.Fatal(err)
+			}
+			defer f.Close()
+
+			c, _ := testClient(test.status, f)
+
+			got, err := c.Characters.Index(test.args.campID)
+			if (err != nil) != test.wantErr {
+				t.Errorf("got: <%v>, want error: <%v>", err, test.wantErr)
+			}
+			if diff := cmp.Diff(got, test.want); diff != "" {
+				t.Errorf("mismatch (-want +got):\n%s", diff)
+			}
+		})
+	}
 }
 
 func TestCharacterService_Get(t *testing.T) {
