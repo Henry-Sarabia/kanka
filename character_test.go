@@ -15,6 +15,7 @@ const (
 	testCharacterGet    string = "test_data/character_get.json"
 	testCharacterIndex  string = "test_data/character_index.json"
 	testCharacterCreate string = "test_data/character_create.json"
+	testCharacterUpdate string = "test_data/character_update.json"
 )
 
 func testClient(status int, resp io.Reader) (*Client, *httptest.Server) {
@@ -434,6 +435,126 @@ func TestCharacterService_Create(t *testing.T) {
 			c, _ := testClient(test.status, f)
 
 			got, err := c.Characters.Create(test.args.campID, test.args.ch)
+			if (err != nil) != test.wantErr {
+				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
+			}
+			if diff := cmp.Diff(got, test.want); diff != "" {
+				t.Errorf("mismatch (-want +got):\n%s", diff)
+			}
+		})
+	}
+}
+
+func TestCharacterService_Update(t *testing.T) {
+	char := SimpleCharacter{
+		Name:  "Stannis Baratheon",
+		Title: "Rightful Heir to the Iron Throne",
+	}
+	type args struct {
+		campID int
+		charID int
+		ch     SimpleCharacter
+	}
+	tests := []struct {
+		name    string
+		status  int
+		file    string
+		args    args
+		want    *Character
+		wantErr bool
+	}{
+		{
+			name:    "StatusOK, valid response, valid args",
+			status:  http.StatusOK,
+			file:    testCharacterUpdate,
+			args:    args{campID: 5272, charID: 111, ch: char},
+			want:    &Character{SimpleCharacter: char, ID: 111},
+			wantErr: false,
+		},
+		{
+			name:    "Status OK, valid response, invalid campID",
+			status:  http.StatusOK,
+			file:    testCharacterUpdate,
+			args:    args{campID: -123, charID: 111, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, valid response, invalid charID",
+			status:  http.StatusOK,
+			file:    testCharacterUpdate,
+			args:    args{campID: 5272, charID: -123, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, valid response, invalid char",
+			status:  http.StatusOK,
+			file:    testCharacterUpdate,
+			args:    args{campID: 5272, charID: 111, ch: SimpleCharacter{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, valid response, invalid args",
+			status:  http.StatusOK,
+			file:    testCharacterUpdate,
+			args:    args{campID: -123, charID: -123, ch: SimpleCharacter{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, empty response, valid args",
+			status:  http.StatusOK,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, charID: 111, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, empty response, invalid args",
+			status:  http.StatusOK,
+			file:    testFileEmpty,
+			args:    args{campID: -123, charID: -123, ch: SimpleCharacter{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusUnauthorized, valid args",
+			status:  http.StatusUnauthorized,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, charID: 111, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusForbidden, valid args",
+			status:  http.StatusForbidden,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, charID: 111, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusNotFound, valid args",
+			status:  http.StatusNotFound,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, charID: 111, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			f, err := os.Open(test.file)
+			if err != nil {
+				t.Fatal(err)
+			}
+			defer f.Close()
+
+			c, _ := testClient(test.status, f)
+
+			got, err := c.Characters.Update(test.args.campID, test.args.charID, test.args.ch)
 			if (err != nil) != test.wantErr {
 				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
 			}
