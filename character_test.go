@@ -11,9 +11,10 @@ import (
 )
 
 const (
-	testFileEmpty      string = "test_data/empty.json"
-	testCharacterGet   string = "test_data/character_get.json"
-	testCharacterIndex string = "test_data/character_index.json"
+	testFileEmpty       string = "test_data/empty.json"
+	testCharacterGet    string = "test_data/character_get.json"
+	testCharacterIndex  string = "test_data/character_index.json"
+	testCharacterCreate string = "test_data/character_create.json"
 )
 
 func testClient(status int, resp io.Reader) (*Client, *httptest.Server) {
@@ -129,7 +130,7 @@ func TestCharacterService_Index(t *testing.T) {
 
 			got, err := c.Characters.Index(test.args.campID)
 			if (err != nil) != test.wantErr {
-				t.Errorf("got: <%v>, want error: <%v>", err, test.wantErr)
+				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
 			}
 			if diff := cmp.Diff(got, test.want); diff != "" {
 				t.Errorf("mismatch (-want +got):\n%s", diff)
@@ -323,7 +324,118 @@ func TestCharacterService_Get(t *testing.T) {
 
 			got, err := c.Characters.Get(test.args.campID, test.args.charID)
 			if (err != nil) != test.wantErr {
-				t.Errorf("got: <%v>, want error: <%v>", err, test.wantErr)
+				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
+			}
+			if diff := cmp.Diff(got, test.want); diff != "" {
+				t.Errorf("mismatch (-want +got):\n%s", diff)
+			}
+		})
+	}
+}
+
+func TestCharacterService_Create(t *testing.T) {
+	char := SimpleCharacter{
+		Name:  "Eddard Stark",
+		Title: "Lord of Winterfell",
+	}
+	type args struct {
+		campID int
+		ch     SimpleCharacter
+	}
+	tests := []struct {
+		name    string
+		status  int
+		file    string
+		args    args
+		want    *Character
+		wantErr bool
+	}{
+		{
+			name:    "StatusOK, valid response, valid args",
+			status:  http.StatusOK,
+			file:    testCharacterCreate,
+			args:    args{campID: 5272, ch: char},
+			want:    &Character{SimpleCharacter: char},
+			wantErr: false,
+		},
+		{
+			name:    "Status OK, valid response, invalid campID",
+			status:  http.StatusOK,
+			file:    testCharacterCreate,
+			args:    args{campID: -123, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, valid response, invalid character",
+			status:  http.StatusOK,
+			file:    testCharacterCreate,
+			args:    args{campID: 5272, ch: SimpleCharacter{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, valid response, invalid args",
+			status:  http.StatusOK,
+			file:    testCharacterCreate,
+			args:    args{campID: -123, ch: SimpleCharacter{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, empty response, valid args",
+			status:  http.StatusOK,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, empty response, invalid args",
+			status:  http.StatusOK,
+			file:    testFileEmpty,
+			args:    args{campID: -123, ch: SimpleCharacter{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusUnauthorized, valid args",
+			status:  http.StatusUnauthorized,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusForbidden, valid args",
+			status:  http.StatusForbidden,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusNotFound, valid args",
+			status:  http.StatusNotFound,
+			file:    testFileEmpty,
+			args:    args{campID: 5272, ch: char},
+			want:    nil,
+			wantErr: true,
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			f, err := os.Open(test.file)
+			if err != nil {
+				t.Fatal(err)
+			}
+			defer f.Close()
+
+			c, _ := testClient(test.status, f)
+
+			got, err := c.Characters.Create(test.args.campID, test.args.ch)
+			if (err != nil) != test.wantErr {
+				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
 			}
 			if diff := cmp.Diff(got, test.want); diff != "" {
 				t.Errorf("mismatch (-want +got):\n%s", diff)

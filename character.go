@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+
+	"github.com/Henry-Sarabia/blank"
 )
 
 // Character contains information about a character.
@@ -44,6 +46,17 @@ type SimpleCharacter struct {
 	PersonalityEntry []string `json:"personality_entry,omitempty"`
 	AppearanceName   []string `json:"appearance_name,omitempty"`
 	AppearanceEntry  []string `json:"appearance_entry,omitempty"`
+}
+
+// MarshalJSON marshals the SimpleCharacter into its JSON-encoded form if it
+// has the required populated fields.
+func (sc SimpleCharacter) MarshalJSON() ([]byte, error) {
+	if blank.Is(sc.Name) {
+		return nil, fmt.Errorf("cannot marshal SimpleCharacter without populated name field into JSON")
+	}
+
+	type alias SimpleCharacter
+	return json.Marshal(alias(sc))
 }
 
 // Traits wraps a list of character traits.
