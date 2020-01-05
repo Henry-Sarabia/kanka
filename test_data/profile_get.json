@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": 111,
+        "name": "Henry",
+        "avatar": "https://some-aws-server.com/some_avatar.png",
+        "avatar_thumb": "https://some-aws-server.com/some_thumbnail.png",
+        "locale": "en-US",
+        "timezone": "UTC",
+        "date_format": "m/d/Y",
+        "default_pagination": 45,
+        "last_campaign_id": 5272,
+        "is_patreon": false
+    }
+}
