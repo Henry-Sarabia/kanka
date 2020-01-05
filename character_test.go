@@ -564,3 +564,75 @@ func TestCharacterService_Update(t *testing.T) {
 		})
 	}
 }
+
+func TestCharacterService_Delete(t *testing.T) {
+	type args struct {
+		campID int
+		charID int
+	}
+	tests := []struct {
+		name    string
+		status  int
+		args    args
+		wantErr bool
+	}{
+		{
+			name:    "StatusOK, valid args",
+			status:  http.StatusOK,
+			args:    args{campID: 111, charID: 222},
+			wantErr: false,
+		},
+		{
+			name:    "Status OK, invalid campID",
+			status:  http.StatusOK,
+			args:    args{campID: -123, charID: 222},
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, invalid charID",
+			status:  http.StatusOK,
+			args:    args{campID: 5272, charID: -123},
+			wantErr: true,
+		},
+		{
+			name:    "Status OK, invalid args",
+			status:  http.StatusOK,
+			args:    args{campID: -123, charID: -123},
+			wantErr: true,
+		},
+		{
+			name:    "StatusUnauthorized, valid args",
+			status:  http.StatusUnauthorized,
+			args:    args{campID: 111, charID: 222},
+			wantErr: true,
+		},
+		{
+			name:    "StatusForbidden, valid args",
+			status:  http.StatusForbidden,
+			args:    args{campID: 111, charID: 222},
+			wantErr: true,
+		},
+		{
+			name:    "StatusNotFound, valid args",
+			status:  http.StatusNotFound,
+			args:    args{campID: 111, charID: 222},
+			wantErr: true,
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			f, err := os.Open(testFileEmpty)
+			if err != nil {
+				t.Fatal(err)
+			}
+			defer f.Close()
+
+			c, _ := testClient(test.status, f)
+
+			err = c.Characters.Delete(test.args.campID, test.args.charID)
+			if (err != nil) != test.wantErr {
+				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
+			}
+		})
+	}
+}
