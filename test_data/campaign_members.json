@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "id": 111,
+            "user": {
+                "id": 222,
+                "name": "Jon",
+                "avatar": "jon_brooding.png"
+            }
+        },
+        {
+            "id": 333,
+            "user": {
+                "id": 444,
+                "name": "Daenerys",
+                "avatar": "daeny_burning_something.png"
+            }
+        },
+        {
+            "id": 555,
+            "user": {
+                "id": 666,
+                "name": "Stannis",
+                "avatar": "stannis_also_brooding.png"
+            }
+        }
+    ]
+}
