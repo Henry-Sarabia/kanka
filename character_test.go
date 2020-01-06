@@ -162,9 +162,7 @@ func TestCharacterService_Get(t *testing.T) {
 		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/characters/pdt4F7zJjCyxDUu2flaZXBPqwHtkhCg8fmowXV05_thumb.jpeg",
 		HasCustomImage: true,
 		EntityID:       430214,
-		CreatedAt:      "2020-01-03T01:18:30.000000Z",
 		CreatedBy:      5600,
-		UpdatedAt:      "2020-01-03T01:18:30.000000Z",
 		UpdatedBy:      5600,
 		Traits: Traits{
 			Data: []*Trait{

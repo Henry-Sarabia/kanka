@@ -15,6 +15,8 @@ type Campaign struct {
 	ImageFull  string    `json:"image_full"`
 	ImageThumb string    `json:"image_thumb"`
 	IsPrivate  bool      `json:"is_private"`
+	Visibility string    `json:"visibility"`
+	Locale     string    `json:"locale"`
 	EntityID   int       `json:"entity_id"`
 	Tags       []int     `json:"tags"`
 	CreatedAt  time.Time `json:"created_at"`
@@ -28,7 +30,7 @@ type Campaign struct {
 // Members exists to satisfy the API's JSON structure.
 type Members struct {
 	Data []*Member `json:"data"`
-	Sync string    `json:"sync"`
+	Sync time.Time `json:"sync"`
 }
 
 // Member provides simple data about a member of a campaign.
@@ -72,7 +74,7 @@ func (cs *CampaignService) Index() ([]*Campaign, error) {
 		Data  []*Campaign `json:"data"`
 		Links Links       `json:"links"`
 		Meta  Meta        `json:"meta"`
-		Sync  string      `json:"sync"`
+		Sync  time.Time   `json:"sync"`
 		//TODO: Implement paging.
 	}
 

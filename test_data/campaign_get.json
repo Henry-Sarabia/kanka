@@ -1,0 +1,24 @@
+{
+    "data": {
+        "id": 5272,
+        "name": "Children of Empires",
+        "locale": "en",
+        "entry": "\n\n",
+        "image": null,
+        "image_full": "https://some-aws-server.com/cool_swords_and_stuff.png",
+        "image_thumb": "https://some-aws-server.com/cool_thumbnail.png",
+        "visibility": "private",
+        "members": {
+            "data": [
+                {
+                    "id": 111,
+                    "user": {
+                        "id": 222,
+                        "name": "Henry",
+                        "avatar": "users/aFstunGZFZ53yr3Zy19IqKBoceuwFGaAJVFfOKUf.png"
+                    }
+                }
+            ]
+        }
+    }
+}

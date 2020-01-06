@@ -12,9 +12,7 @@
         "tags": [
             34696
         ],
-        "created_at": "2020-01-03T01:18:30.000000Z",
         "created_by": 5600,
-        "updated_at": "2020-01-03T01:18:30.000000Z",
         "updated_by": 5600,
         "location_id": 26145,
         "title": "Tinkerer",
@@ -82,8 +80,7 @@
                     "is_private": false,
                     "default_order": 2
                 }
-            ],
-            "sync": "2020-01-03T03:05:58.661158Z"
+            ]
         }
     }
 }
