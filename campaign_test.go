@@ -9,8 +9,88 @@ import (
 )
 
 const (
-	testCampaignGet string = "test_data/campaign_get.json"
+	testCampaignIndex string = "test_data/campaign_index.json"
+	testCampaignGet   string = "test_data/campaign_get.json"
 )
+
+func TestCampaignService_Index(t *testing.T) {
+	camps := []*Campaign{
+		&Campaign{
+			Name: "The Adventures of Adventurers",
+			ID:   111,
+		},
+		&Campaign{
+			Name: "The Heroics of Heroes and Heroines",
+			ID:   222,
+		},
+		&Campaign{
+			Name: "The Traversings of Travelers",
+			ID:   333,
+		},
+	}
+	tests := []struct {
+		name    string
+		status  int
+		file    string
+		want    []*Campaign
+		wantErr bool
+	}{
+		{
+			name:    "StatusOK, valid response",
+			status:  http.StatusOK,
+			file:    testCampaignIndex,
+			want:    camps,
+			wantErr: false,
+		},
+		{
+			name:    "Status OK, empty response",
+			status:  http.StatusOK,
+			file:    testFileEmpty,
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusUnauthorized",
+			status:  http.StatusUnauthorized,
+			file:    testFileEmpty,
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusForbidden",
+			status:  http.StatusForbidden,
+			file:    testFileEmpty,
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name:    "StatusNotFound",
+			status:  http.StatusNotFound,
+			file:    testFileEmpty,
+			want:    nil,
+			wantErr: true,
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			f, err := os.Open(test.file)
+			if err != nil {
+				t.Fatal(err)
+			}
+			defer f.Close()
+
+			c, _ := testClient(test.status, f)
+
+			got, err := c.Campaigns.Index()
+			if (err != nil) != test.wantErr {
+				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
+			}
+			if diff := cmp.Diff(got, test.want); diff != "" {
+				t.Errorf("mismatch (-want +got):\n%s", diff)
+			}
+		})
+	}
+}
 
 func TestCampaignService_Get(t *testing.T) {
 	camp := &Campaign{

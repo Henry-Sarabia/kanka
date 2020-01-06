@@ -12,8 +12,8 @@ import (
 
 const (
 	testFileEmpty       string = "test_data/empty.json"
-	testCharacterGet    string = "test_data/character_get.json"
 	testCharacterIndex  string = "test_data/character_index.json"
+	testCharacterGet    string = "test_data/character_get.json"
 	testCharacterCreate string = "test_data/character_create.json"
 	testCharacterUpdate string = "test_data/character_update.json"
 )
