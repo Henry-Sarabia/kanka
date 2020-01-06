@@ -24,6 +24,13 @@ type Character struct {
 	UpdatedAt      time.Time `json:"updated_at"`
 	UpdatedBy      int       `json:"updated_by"`
 	Traits         Traits    `json:"traits"`
+
+	Attributes   Attributes   `json:"attributes"`
+	EntityEvents EntityEvents `json:"entity_events"`
+	EntityFiles  EntityFiles  `json:"entity_files"`
+	EntityNotes  EntityNotes  `json:"entity_notes"`
+	Relations    Relations    `json:"relations"`
+	Inventory    Inventory    `json:"inventory"`
 }
 
 // SimpleCharacter contains only the simple information about a character.
