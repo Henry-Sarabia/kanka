@@ -6,6 +6,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/google/go-cmp/cmp"
 )
@@ -51,8 +52,12 @@ func TestCharacterService_Index(t *testing.T) {
 			},
 		},
 	}
+	n := time.Now()
+	now := &n
+
 	type args struct {
 		campID int
+		sync   *time.Time
 	}
 	tests := []struct {
 		name    string
@@ -66,7 +71,7 @@ func TestCharacterService_Index(t *testing.T) {
 			name:    "StatusOK, valid response, valid args",
 			status:  http.StatusOK,
 			file:    testCharacterIndex,
-			args:    args{campID: 5272},
+			args:    args{campID: 5272, sync: now},
 			want:    chars,
 			wantErr: false,
 		},
@@ -74,7 +79,7 @@ func TestCharacterService_Index(t *testing.T) {
 			name:    "Status OK, valid response, invalid args",
 			status:  http.StatusOK,
 			file:    testCharacterIndex,
-			args:    args{campID: -123},
+			args:    args{campID: -123, sync: now},
 			want:    nil,
 			wantErr: true,
 		},
@@ -82,7 +87,7 @@ func TestCharacterService_Index(t *testing.T) {
 			name:    "Status OK, empty response, valid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: 5272},
+			args:    args{campID: 5272, sync: now},
 			want:    nil,
 			wantErr: true,
 		},
@@ -90,7 +95,7 @@ func TestCharacterService_Index(t *testing.T) {
 			name:    "Status OK, empty response, invalid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: -123},
+			args:    args{campID: -123, sync: now},
 			want:    nil,
 			wantErr: true,
 		},
@@ -98,7 +103,7 @@ func TestCharacterService_Index(t *testing.T) {
 			name:    "StatusUnauthorized, valid args",
 			status:  http.StatusUnauthorized,
 			file:    testFileEmpty,
-			args:    args{campID: 5272},
+			args:    args{campID: 5272, sync: now},
 			want:    nil,
 			wantErr: true,
 		},
@@ -106,7 +111,7 @@ func TestCharacterService_Index(t *testing.T) {
 			name:    "StatusForbidden, valid args",
 			status:  http.StatusForbidden,
 			file:    testFileEmpty,
-			args:    args{campID: 5272},
+			args:    args{campID: 5272, sync: now},
 			want:    nil,
 			wantErr: true,
 		},
@@ -114,7 +119,7 @@ func TestCharacterService_Index(t *testing.T) {
 			name:    "StatusNotFound, valid args",
 			status:  http.StatusNotFound,
 			file:    testFileEmpty,
-			args:    args{campID: 5272},
+			args:    args{campID: 5272, sync: now},
 			want:    nil,
 			wantErr: true,
 		},
@@ -129,7 +134,7 @@ func TestCharacterService_Index(t *testing.T) {
 
 			c, _ := testClient(test.status, f)
 
-			got, err := c.Characters.Index(test.args.campID)
+			got, err := c.Characters.Index(test.args.campID, test.args.sync)
 			if (err != nil) != test.wantErr {
 				t.Fatalf("got: <%v>, want error: <%v>", err, test.wantErr)
 			}

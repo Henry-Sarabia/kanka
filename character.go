@@ -60,7 +60,7 @@ type SimpleCharacter struct {
 // has the required populated fields.
 func (sc SimpleCharacter) MarshalJSON() ([]byte, error) {
 	if blank.Is(sc.Name) {
-		return nil, fmt.Errorf("cannot marshal SimpleCharacter without populated name field into JSON")
+		return nil, fmt.Errorf("cannot marshal SimpleCharacter into JSON with a missing Name")
 	}
 
 	type alias SimpleCharacter
@@ -88,7 +88,7 @@ type CharacterService service
 
 // Index returns a list of all characters in the Campaign corresponding with
 // the provided id.
-func (cs *CharacterService) Index(campID int) ([]*Character, error) {
+func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, error) {
 	var wrap struct {
 		Data []*Character `json:"data"`
 	}
@@ -98,6 +98,9 @@ func (cs *CharacterService) Index(campID int) ([]*Character, error) {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
 	end = end.Append("/" + string(cs.end))
+	if sync != nil {
+		end = end.Sync(*sync)
+	}
 
 	err = cs.client.get(end, &wrap)
 	if err != nil {

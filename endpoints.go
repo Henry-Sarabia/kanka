@@ -3,6 +3,7 @@ package kanka
 import (
 	"fmt"
 	"strconv"
+	"time"
 )
 
 type endpoint string
@@ -53,4 +54,10 @@ func (e endpoint) ID(id int) (endpoint, error) {
 	}
 
 	return e.Append("/" + strconv.Itoa(id)), nil
+}
+
+// Sync returns an endpoint appropriately formatted with the provided lastSync
+// time.
+func (e endpoint) Sync(t time.Time) endpoint {
+	return e.Append("/?lastSync=" + t.Format(time.RFC3339))
 }
