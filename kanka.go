@@ -96,6 +96,8 @@ func (c *Client) send(req *http.Request, result interface{}) error {
 // get executes a GET request to the provided endpoint and stores the
 // unmarshaled JSON result in the provided empty interface.
 func (c *Client) get(end endpoint, result interface{}) error {
+	end = end.Append("?related=1")
+
 	req, err := c.request("GET", end, nil)
 	if err != nil {
 		return err
