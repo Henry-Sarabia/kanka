@@ -47,6 +47,12 @@ func (e endpoint) Append(s string) endpoint {
 	return endpoint(string(e) + s)
 }
 
+// Concat returns an endpoint appropriately concatenated with the provided
+// endpoint.
+func (e endpoint) Concat(end endpoint) endpoint {
+	return e.Append("/" + string(end))
+}
+
 // ID returns an endpoint appropriately formatted with the provided id.
 func (e endpoint) ID(id int) (endpoint, error) {
 	if id < 0 {

@@ -93,10 +93,12 @@ func (c *Client) send(req *http.Request, result interface{}) error {
 	return nil
 }
 
+const paramRelated string = "?related=1"
+
 // get executes a GET request to the provided endpoint and stores the
 // unmarshaled JSON result in the provided empty interface.
 func (c *Client) get(end endpoint, result interface{}) error {
-	end = end.Append("?related=1")
+	end = end.Append(paramRelated)
 
 	req, err := c.request("GET", end, nil)
 	if err != nil {

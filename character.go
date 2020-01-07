@@ -90,17 +90,18 @@ type CharacterService service
 // the provided id. If a sync time is provided, Index will only return
 // Characters which have been changed since that time.
 func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, error) {
-	var wrap struct {
-		Data []*Character `json:"data"`
-	}
-
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Append("/" + string(cs.end))
+	end = end.Concat(cs.end)
+
 	if sync != nil {
 		end = end.Sync(*sync)
+	}
+
+	var wrap struct {
+		Data []*Character `json:"data"`
 	}
 
 	err = cs.client.get(end, &wrap)
@@ -114,19 +115,19 @@ func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, er
 // Get returns the Character corresponding with the provided ID from the
 // Campaign corresponding with the other provided ID.
 func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
-	var wrap struct {
-		Data *Character `json:"data"`
-	}
-
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
+	end = end.Concat(cs.end)
 
-	end = end.Append("/" + string(cs.end))
 	end, err = end.ID(charID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Character ID: %w", err)
+	}
+
+	var wrap struct {
+		Data *Character `json:"data"`
 	}
 
 	err = cs.client.get(end, &wrap)
@@ -141,19 +142,19 @@ func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
 // ID using the provided SimpleCharacter data. Create returns the newly created
 // Character.
 func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, error) {
-	var wrap struct {
-		Data *Character `json:"data"`
-	}
-
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Append("/" + string(cs.end))
+	end = end.Concat(cs.end)
 
 	b, err := json.Marshal(ch)
 	if err != nil {
 		return nil, fmt.Errorf("cannot marshal SimpleCharacter (Name: %s): %w", ch.Name, err)
+	}
+
+	var wrap struct {
+		Data *Character `json:"data"`
 	}
 
 	err = cs.client.post(end, bytes.NewReader(b), &wrap)
@@ -168,15 +169,11 @@ func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, 
 // in the Kanka campaign with the provided ID using the provided SimpleCharacter
 // data. Update returns the newly updated Character.
 func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (*Character, error) {
-	var wrap struct {
-		Data *Character `json:"data"`
-	}
-
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Append("/" + string(cs.end))
+	end = end.Concat(cs.end)
 
 	end, err = end.ID(charID)
 	if err != nil {
@@ -186,6 +183,10 @@ func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (
 	b, err := json.Marshal(ch)
 	if err != nil {
 		return nil, fmt.Errorf("cannot marshal SimpleCharacter (Name: %s): %w", ch.Name, err)
+	}
+
+	var wrap struct {
+		Data *Character `json:"data"`
 	}
 
 	err = cs.client.put(end, bytes.NewReader(b), &wrap)
@@ -203,7 +204,7 @@ func (cs *CharacterService) Delete(campID int, charID int) error {
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Append("/" + string(cs.end))
+	end = end.Concat(cs.end)
 
 	end, err = end.ID(charID)
 	if err != nil {
