@@ -86,8 +86,9 @@ type Trait struct {
 // CharacterService handles communication with the Character endpoint.
 type CharacterService service
 
-// Index returns a list of all characters in the Campaign corresponding with
-// the provided id.
+// Index returns a list of all Characters in the Campaign corresponding with
+// the provided id. If a sync time is provided, Index will only return
+// Characters which have been changed since that time.
 func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, error) {
 	var wrap struct {
 		Data []*Character `json:"data"`
