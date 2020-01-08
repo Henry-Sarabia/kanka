@@ -28,6 +28,7 @@ type Client struct {
 	Profiles   *ProfileService
 	Campaigns  *CampaignService
 	Characters *CharacterService
+	Locations  *LocationService
 }
 
 // NewClient returns an appropriately configured Client using the provided
@@ -47,6 +48,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Profiles = &ProfileService{client: c, end: EndpointProfile}
 	c.Campaigns = &CampaignService{client: c, end: EndpointCampaign}
 	c.Characters = &CharacterService{client: c, end: EndpointCharacter}
+	c.Locations = &LocationService{client: c, end: EndpointLocation}
 
 	return c
 }

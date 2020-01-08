@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "King's Landing",
+            "type": "Capital"
+        },
+        {
+            "name": "Dragonstone",
+            "type": "Castle"
+        },
+        {
+            "name": "Crossroads Inn",
+            "type": "Inn"
+        }
+    ]
+}
