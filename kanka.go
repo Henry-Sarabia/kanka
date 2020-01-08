@@ -16,9 +16,9 @@ type service struct {
 	end    endpoint
 }
 
-// Client wraps an HTTP client used to communicate with the Kanka API,
-// the root URL of the Kanka API, and the user's Kanka OAuth key.
-// Client holds all the separate services for each endpoint.
+// Client handles communication between the user and the Kanka API.
+// Client requires a valid Kanka user's OAuth token to authenticate each
+// request. Client contains separate services for each endpoint.
 type Client struct {
 	http    *http.Client
 	rootURL string
@@ -30,9 +30,9 @@ type Client struct {
 	Characters *CharacterService
 }
 
-// NewClient returns a new Client configured to communicate with the Kanka API.
-// The provided token is used to make API calls on your behalf. If no custom
-// HTTP client is provided, a default HTTP client is used instead.
+// NewClient returns an appropriately configured Client using the provided
+// OAuth token. A provided custom HTTP client can be used to make the API
+// requests otherwise a default HTTP client will be used instead.
 func NewClient(token string, custom *http.Client) *Client {
 	if custom == nil {
 		custom = http.DefaultClient

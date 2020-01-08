@@ -86,9 +86,9 @@ type Trait struct {
 // CharacterService handles communication with the Character endpoint.
 type CharacterService service
 
-// Index returns a list of all Characters in the Campaign corresponding with
-// the provided id. If a sync time is provided, Index will only return
-// Characters which have been changed since that time.
+// Index returns the list of all Characters in the Campaign associated with campID.
+// If a non-nil time is provided, Index will only return Characters that have
+// been changed since that time.
 func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, error) {
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
@@ -106,14 +106,14 @@ func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, er
 
 	err = cs.client.get(end, &wrap)
 	if err != nil {
-		return nil, fmt.Errorf("cannot get Character index from Campaign (ID: %d): %w", campID, err)
+		return nil, fmt.Errorf("cannot get Character Index from Campaign (ID: %d): %w", campID, err)
 	}
 
 	return wrap.Data, nil
 }
 
-// Get returns the Character corresponding with the provided ID from the
-// Campaign corresponding with the other provided ID.
+// Get returns the Character associated with charID from the Campaign
+// associated with campID.
 func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
@@ -138,9 +138,9 @@ func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
 	return wrap.Data, nil
 }
 
-// Create creates a new Character entry in the Kanka campaign with the provided
-// ID using the provided SimpleCharacter data. Create returns the newly created
-// Character.
+// Create creates a new Character in the Campaign associated with campID using
+// the provided SimpleCharacter data.
+// Create returns the newly created Character.
 func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, error) {
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
@@ -165,9 +165,9 @@ func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, 
 	return wrap.Data, nil
 }
 
-// Update updates an existing Character with the corresponding provided charID
-// in the Kanka campaign with the provided ID using the provided SimpleCharacter
-// data. Update returns the newly updated Character.
+// Update updates an existing Character associated with charID from the
+// Campaign associated with campID using the provided SimpleCharacter data.
+// Update returns the newly updated Character.
 func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (*Character, error) {
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
@@ -197,8 +197,8 @@ func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (
 	return wrap.Data, nil
 }
 
-// Delete deletes an existing Character with the provided charID in the Kanka
-// campaign with the provided ID.
+// Delete deletes an existing Character associated with charID from the
+// Campaign associated with campID.
 func (cs *CharacterService) Delete(campID int, charID int) error {
 	end, err := EndpointCampaign.ID(campID)
 	if err != nil {
