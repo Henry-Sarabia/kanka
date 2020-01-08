@@ -1,0 +1,22 @@
+{
+    "data": {
+        "id": 115368,
+        "name": "Winterfell",
+        "entry": "\n<p>The jewel of the North.</p>\n",
+        "image": "locations/ox87nkFQWMn9tTpLuXNk56fq0Du2V3HjocFl9ROY.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/locations/ox87nkFQWMn9tTpLuXNk56fq0Du2V3HjocFl9ROY.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/locations/ox87nkFQWMn9tTpLuXNk56fq0Du2V3HjocFl9ROY_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 436726,
+        "tags": [
+            35115
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "type": "Castle",
+        "map": "locations/7MHptkcOx4MpyAxPokfZCB4bGVDLEXq9nCHe2Tex.jpeg",
+        "is_map_private": 0,
+        "parent_location_id": 115366
+    }
+}
