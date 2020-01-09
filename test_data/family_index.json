@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Baratheon",
+			"location_id": 111
+        },
+        {
+            "name": "Lannister",
+			"location_id": 222
+        },
+        {
+            "name": "Reed",
+            "location_id": 333
+        }
+    ]
+}

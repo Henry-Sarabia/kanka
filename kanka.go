@@ -29,6 +29,7 @@ type Client struct {
 	Campaigns  *CampaignService
 	Characters *CharacterService
 	Locations  *LocationService
+	Families   *FamilyService
 }
 
 // NewClient returns an appropriately configured Client using the provided
@@ -49,6 +50,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Campaigns = &CampaignService{client: c, end: EndpointCampaign}
 	c.Characters = &CharacterService{client: c, end: EndpointCharacter}
 	c.Locations = &LocationService{client: c, end: EndpointLocation}
+	c.Families = &FamilyService{client: c, end: EndpointFamily}
 
 	return c
 }
