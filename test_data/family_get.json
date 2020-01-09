@@ -1,0 +1,23 @@
+{
+    "data": {
+        "id": 16439,
+        "name": "Stark",
+        "entry": "\n<p>House Stark</p>\n",
+        "image": "families/EIwz3WTvqcbVVcUYBue9O4DQ9dETmlI6JYbkOGx1.png",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/families/EIwz3WTvqcbVVcUYBue9O4DQ9dETmlI6JYbkOGx1.png",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/families/EIwz3WTvqcbVVcUYBue9O4DQ9dETmlI6JYbkOGx1_thumb.png",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 436884,
+        "tags": [
+            35131
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "location_id": 115368,
+        "type": "Royal",
+        "members": [
+            118427
+        ]
+    }
+}
