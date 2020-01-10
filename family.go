@@ -23,7 +23,6 @@ type Family struct {
 	CreatedBy      int       `json:"created_by"`
 	UpdatedAt      time.Time `json:"updated_at"`
 	UpdatedBy      int       `json:"updated_by"`
-	Type           string    `json:"type"`
 	Members        []int     `json:"members"`
 
 	Attributes   Attributes   `json:"attributes"`
@@ -39,12 +38,13 @@ type Family struct {
 // Kanka.
 type SimpleFamily struct {
 	Name       string `json:"name"`
-	LocationID int    `json:"location_id"`
-	FamilyID   int    `json:"family_id"`
-	Tags       []int  `json:"tags"`
-	IsPrivate  bool   `json:"is_private"`
-	Image      string `json:"image"`
-	ImageURL   string `json:"image_url"`
+	Type       string `json:"type,omitempty"`
+	LocationID int    `json:"location_id,omitempty"`
+	FamilyID   int    `json:"family_id,omitempty"`
+	Tags       []int  `json:"tags,omitempty"`
+	IsPrivate  bool   `json:"is_private,omitempty"`
+	Image      string `json:"image,omitempty"`
+	ImageURL   string `json:"image_url,omitempty"`
 }
 
 // MarshalJSON marshals the SimpleFamily into its JSON-encoded form if it
