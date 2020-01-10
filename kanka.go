@@ -25,11 +25,12 @@ type Client struct {
 	token   string
 
 	// Services
-	Profiles   *ProfileService
-	Campaigns  *CampaignService
-	Characters *CharacterService
-	Locations  *LocationService
-	Families   *FamilyService
+	Profiles      *ProfileService
+	Campaigns     *CampaignService
+	Characters    *CharacterService
+	Locations     *LocationService
+	Families      *FamilyService
+	Organizations *OrganizationService
 }
 
 // NewClient returns an appropriately configured Client using the provided
@@ -51,6 +52,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Characters = &CharacterService{client: c, end: EndpointCharacter}
 	c.Locations = &LocationService{client: c, end: EndpointLocation}
 	c.Families = &FamilyService{client: c, end: EndpointFamily}
+	c.Organizations = &OrganizationService{client: c, end: EndpointOrganization}
 
 	return c
 }

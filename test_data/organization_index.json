@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Golden Company",
+			"type": "Company"
+        },
+        {
+            "name": "Iron Bank",
+			"type": "Bank"
+        },
+        {
+            "name": "Brotherhood of Banners",
+            "type": "Company"
+        }
+    ]
+}

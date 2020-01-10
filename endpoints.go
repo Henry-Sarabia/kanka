@@ -16,7 +16,7 @@ const (
 	EndpointCharacter    endpoint = "characters"
 	EndpointLocation     endpoint = "locations"
 	EndpointFamily       endpoint = "families"
-	EndpointOrganisation endpoint = "organisations"
+	EndpointOrganization endpoint = "organisations"
 	EndpointItem         endpoint = "items"
 	EndpointNote         endpoint = "notes"
 	EndpointEvent        endpoint = "events"
