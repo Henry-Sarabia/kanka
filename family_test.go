@@ -137,6 +137,7 @@ func TestFamilyService_Get(t *testing.T) {
 			Image:      "families/EIwz3WTvqcbVVcUYBue9O4DQ9dETmlI6JYbkOGx1.png",
 			IsPrivate:  false,
 			Tags:       []int{35131},
+			Type:       "Royal",
 			LocationID: 115368,
 		},
 		ID:             16439,
@@ -147,7 +148,6 @@ func TestFamilyService_Get(t *testing.T) {
 		EntityID:       436884,
 		CreatedBy:      5600,
 		UpdatedBy:      5600,
-		Type:           "Royal",
 		Members:        []int{118427},
 	}
 
