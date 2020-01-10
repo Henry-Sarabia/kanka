@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Sword",
+			"type": "Weapon"
+        },
+        {
+            "name": "Bow",
+			"type": "Weapon"
+        },
+        {
+            "name": "Saddlebag",
+            "type": "Equipment"
+        }
+    ]
+}

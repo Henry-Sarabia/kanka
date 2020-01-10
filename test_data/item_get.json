@@ -1,0 +1,23 @@
+{
+    "data": {
+        "id": 34780,
+        "name": "Wind-up Chronicle",
+        "entry": "\n<p>Time dilation</p>\n",
+        "image": "items/vyh5Fjzeij0gtdgsqjlJJOyTO4it6LG5l3ajTDNA.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/items/vyh5Fjzeij0gtdgsqjlJJOyTO4it6LG5l3ajTDNA.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/items/vyh5Fjzeij0gtdgsqjlJJOyTO4it6LG5l3ajTDNA_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 434400,
+        "tags": [
+            34696
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "location_id": 111,
+        "character_id": 222,
+        "type": "Timepiece",
+        "price": "500",
+        "size": "Diminutive"
+    }
+}
