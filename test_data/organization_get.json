@@ -1,0 +1,22 @@
+{
+    "data": {
+        "id": 23579,
+        "name": "Brave Companions",
+        "entry": "\n<p>Also known as the \"Bloody Mummers\"</p>\n",
+        "image": "organisations/PZQVp6lFwpcXSbw0kERQUfklZ7nSc4rAlieHaieh.png",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/organisations/PZQVp6lFwpcXSbw0kERQUfklZ7nSc4rAlieHaieh.png",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/organisations/PZQVp6lFwpcXSbw0kERQUfklZ7nSc4rAlieHaieh_thumb.png",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 437024,
+        "tags": [
+            35131
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "location_id": 115366,
+        "type": "Company",
+        "organisation_id": 23578,
+        "members": 1
+    }
+}
