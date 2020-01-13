@@ -32,6 +32,7 @@ type Client struct {
 	Families      *FamilyService
 	Organizations *OrganizationService
 	Items         *ItemService
+	Notes         *NoteService
 }
 
 // NewClient returns an appropriately configured Client using the provided
@@ -55,6 +56,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Families = &FamilyService{client: c, end: EndpointFamily}
 	c.Organizations = &OrganizationService{client: c, end: EndpointOrganization}
 	c.Items = &ItemService{client: c, end: EndpointItem}
+	c.Notes = &NoteService{client: c, end: EndpointNote}
 
 	return c
 }
