@@ -1,0 +1,19 @@
+{
+    "data": {
+        "id": 2142,
+        "name": "Emberweed",
+        "entry": "\n<p>A very tasty plant whose seeds taste of pepper, Emberweed possesses a hidden danger. Its famous seeds, used often in Dwarven and Gnomish cooking, are incredibly flammable and will explode if left too long near a fire.</p>\n",
+        "image": "notes/2XAeetUHrO0TDB0lU6tAsa46wvdIEmZ1jmsSUC20.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/notes/2XAeetUHrO0TDB0lU6tAsa46wvdIEmZ1jmsSUC20.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/notes/2XAeetUHrO0TDB0lU6tAsa46wvdIEmZ1jmsSUC20_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 86314,
+        "tags": [
+            3742
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "type": "Worldbuilding"
+    }
+}
