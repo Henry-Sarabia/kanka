@@ -14,7 +14,6 @@ import (
 type Organization struct {
 	SimpleOrganization
 	ID             int       `json:"id"`
-	Entry          string    `json:"entry"`
 	ImageFull      string    `json:"image_full"`
 	ImageThumb     string    `json:"image_thumb"`
 	HasCustomImage bool      `json:"has_custom_image"`
@@ -38,6 +37,7 @@ type Organization struct {
 // to Kanka.
 type SimpleOrganization struct {
 	Name           string `json:"name"`
+	Entry          string `json:"entry,omitempty"`
 	Type           string `json:"type,omitempty"`
 	OrganizationID int    `json:"organisation_id,omitempty"`
 	LocationID     int    `json:"location_id,omitempty"`

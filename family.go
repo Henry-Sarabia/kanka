@@ -14,7 +14,6 @@ import (
 type Family struct {
 	SimpleFamily
 	ID             int       `json:"id"`
-	Entry          string    `json:"entry"`
 	ImageFull      string    `json:"image_full"`
 	ImageThumb     string    `json:"image_thumb"`
 	HasCustomImage bool      `json:"has_custom_image"`
@@ -38,6 +37,7 @@ type Family struct {
 // Kanka.
 type SimpleFamily struct {
 	Name       string `json:"name"`
+	Entry      string `json:"entry,omitempty"`
 	Type       string `json:"type,omitempty"`
 	LocationID int    `json:"location_id,omitempty"`
 	FamilyID   int    `json:"family_id,omitempty"`

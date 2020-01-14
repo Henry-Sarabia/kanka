@@ -134,23 +134,23 @@ func TestItemService_Get(t *testing.T) {
 	item := &Item{
 		SimpleItem: SimpleItem{
 			Name:        "Wind-up Chronicle",
+			Entry:       "\n<p>Time dilation</p>\n",
 			Image:       "items/vyh5Fjzeij0gtdgsqjlJJOyTO4it6LG5l3ajTDNA.jpeg",
 			IsPrivate:   false,
 			Tags:        []int{34696},
 			LocationID:  111,
 			CharacterID: 222,
 			Type:        "Timepiece",
+			Price:       "500",
+			Size:        "Diminutive",
 		},
 		ID:             34780,
-		Entry:          "\n<p>Time dilation</p>\n",
 		ImageFull:      "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/items/vyh5Fjzeij0gtdgsqjlJJOyTO4it6LG5l3ajTDNA.jpeg",
 		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/items/vyh5Fjzeij0gtdgsqjlJJOyTO4it6LG5l3ajTDNA_thumb.jpeg",
 		HasCustomImage: true,
 		EntityID:       434400,
 		CreatedBy:      5600,
 		UpdatedBy:      5600,
-		Price:          "500",
-		Size:           "Diminutive",
 	}
 
 	type args struct {

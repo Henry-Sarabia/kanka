@@ -14,7 +14,6 @@ import (
 type Character struct {
 	SimpleCharacter
 	ID             int       `json:"id"`
-	Entry          string    `json:"entry"`
 	ImageFull      string    `json:"image_full"`
 	ImageThumb     string    `json:"image_thumb"`
 	HasCustomImage bool      `json:"has_custom_image"`
@@ -38,6 +37,7 @@ type Character struct {
 // Kanka.
 type SimpleCharacter struct {
 	Name             string   `json:"name"`
+	Entry            string   `json:"entry,omitempty"`
 	Title            string   `json:"title,omitempty"`
 	Age              string   `json:"age,omitempty"`
 	Sex              string   `json:"sex,omitempty"`

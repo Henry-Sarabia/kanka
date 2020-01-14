@@ -149,6 +149,7 @@ func TestCharacterService_Get(t *testing.T) {
 	char := &Character{
 		SimpleCharacter: SimpleCharacter{
 			Name:       "Penny Galvenrise",
+			Entry:      "\n<p>She is the key to finding Mechanus</p>\n",
 			Image:      "characters/pdt4F7zJjCyxDUu2flaZXBPqwHtkhCg8fmowXV05.jpeg",
 			IsPrivate:  false,
 			Tags:       []int{34696},
@@ -162,7 +163,6 @@ func TestCharacterService_Get(t *testing.T) {
 			IsDead:     false,
 		},
 		ID:             116623,
-		Entry:          "\n<p>She is the key to finding Mechanus</p>\n",
 		ImageFull:      "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/characters/pdt4F7zJjCyxDUu2flaZXBPqwHtkhCg8fmowXV05.jpeg",
 		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/characters/pdt4F7zJjCyxDUu2flaZXBPqwHtkhCg8fmowXV05_thumb.jpeg",
 		HasCustomImage: true,
