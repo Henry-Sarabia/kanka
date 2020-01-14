@@ -1,0 +1,21 @@
+{
+    "data": {
+        "id": 15008,
+        "name": "Winter's Crest",
+        "entry": "\n<p>A fantastic festival!</p>\n",
+        "image": "events/pKtVTVLA776DKxNq3PMquVmNGmg3rJVboEJcje8j.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/events/pKtVTVLA776DKxNq3PMquVmNGmg3rJVboEJcje8j.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/events/pKtVTVLA776DKxNq3PMquVmNGmg3rJVboEJcje8j_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 442245,
+        "tags": [
+            35131
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "location_id": 115366,
+        "type": "Festival",
+        "date": "First day of Frostbloom"
+    }
+}
