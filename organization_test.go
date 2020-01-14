@@ -134,6 +134,7 @@ func TestOrganizationService_Get(t *testing.T) {
 	org := &Organization{
 		SimpleOrganization: SimpleOrganization{
 			Name:           "Brave Companions",
+			Entry:          "\n<p>Also known as the \"Bloody Mummers\"</p>\n",
 			Type:           "Company",
 			Image:          "organisations/PZQVp6lFwpcXSbw0kERQUfklZ7nSc4rAlieHaieh.png",
 			IsPrivate:      false,
@@ -142,7 +143,6 @@ func TestOrganizationService_Get(t *testing.T) {
 			OrganizationID: 23578,
 		},
 		ID:             23579,
-		Entry:          "\n<p>Also known as the \"Bloody Mummers\"</p>\n",
 		ImageFull:      "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/organisations/PZQVp6lFwpcXSbw0kERQUfklZ7nSc4rAlieHaieh.png",
 		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/organisations/PZQVp6lFwpcXSbw0kERQUfklZ7nSc4rAlieHaieh_thumb.png",
 		HasCustomImage: true,

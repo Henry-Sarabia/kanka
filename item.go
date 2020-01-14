@@ -14,7 +14,6 @@ import (
 type Item struct {
 	SimpleItem
 	ID             int       `json:"id"`
-	Entry          string    `json:"entry"`
 	ImageFull      string    `json:"image_full"`
 	ImageThumb     string    `json:"image_thumb"`
 	HasCustomImage bool      `json:"has_custom_image"`
@@ -23,8 +22,6 @@ type Item struct {
 	CreatedBy      int       `json:"created_by"`
 	UpdatedAt      time.Time `json:"updated_at"`
 	UpdatedBy      int       `json:"updated_by"`
-	Price          string    `json:"price"`
-	Size           string    `json:"size"`
 
 	Attributes   Attributes   `json:"attributes"`
 	EntityEvents EntityEvents `json:"entity_events"`
@@ -38,7 +35,10 @@ type Item struct {
 // SimpleItem is primarily used to create new items for posting to Kanka.
 type SimpleItem struct {
 	Name        string `json:"name"`
+	Entry       string `json:"entry,omitempty"`
 	Type        string `json:"type,omitempty"`
+	Price       string `json:"price,omitempty"`
+	Size        string `json:"size,omitempty"`
 	LocationID  int    `json:"location_id,omitempty"`
 	CharacterID int    `json:"character_id,omitempty"`
 	Tags        []int  `json:"tags,omitempty"`

@@ -134,6 +134,7 @@ func TestFamilyService_Get(t *testing.T) {
 	fam := &Family{
 		SimpleFamily: SimpleFamily{
 			Name:       "Stark",
+			Entry:      "\n<p>House Stark</p>\n",
 			Image:      "families/EIwz3WTvqcbVVcUYBue9O4DQ9dETmlI6JYbkOGx1.png",
 			IsPrivate:  false,
 			Tags:       []int{35131},
@@ -141,7 +142,6 @@ func TestFamilyService_Get(t *testing.T) {
 			LocationID: 115368,
 		},
 		ID:             16439,
-		Entry:          "\n<p>House Stark</p>\n",
 		ImageFull:      "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/families/EIwz3WTvqcbVVcUYBue9O4DQ9dETmlI6JYbkOGx1.png",
 		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/families/EIwz3WTvqcbVVcUYBue9O4DQ9dETmlI6JYbkOGx1_thumb.png",
 		HasCustomImage: true,

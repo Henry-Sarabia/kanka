@@ -14,7 +14,6 @@ import (
 type Location struct {
 	SimpleLocation
 	ID             int       `json:"id"`
-	Entry          string    `json:"entry"`
 	ImageFull      string    `json:"image_full"`
 	ImageThumb     string    `json:"image_thumb"`
 	IsMapPrivate   int       `json:"is_map_private"`
@@ -38,6 +37,7 @@ type Location struct {
 // Kanka.
 type SimpleLocation struct {
 	Name             string `json:"name"`
+	Entry            string `json:"entry,omitempty"`
 	Type             string `json:"type,omitempty"`
 	ParentLocationID int    `json:"parent_location_id,omitempty"`
 	Tags             []int  `json:"tags,omitempty"`

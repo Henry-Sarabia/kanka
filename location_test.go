@@ -134,6 +134,7 @@ func TestLocationService_Get(t *testing.T) {
 	loc := &Location{
 		SimpleLocation: SimpleLocation{
 			Name:             "Winterfell",
+			Entry:            "\n<p>The jewel of the North.</p>\n",
 			Image:            "locations/ox87nkFQWMn9tTpLuXNk56fq0Du2V3HjocFl9ROY.jpeg",
 			IsPrivate:        false,
 			Tags:             []int{35115},
@@ -142,7 +143,6 @@ func TestLocationService_Get(t *testing.T) {
 			ParentLocationID: 115366,
 		},
 		ID:             115368,
-		Entry:          "\n<p>The jewel of the North.</p>\n",
 		ImageFull:      "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/locations/ox87nkFQWMn9tTpLuXNk56fq0Du2V3HjocFl9ROY.jpeg",
 		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/locations/ox87nkFQWMn9tTpLuXNk56fq0Du2V3HjocFl9ROY_thumb.jpeg",
 		HasCustomImage: true,
