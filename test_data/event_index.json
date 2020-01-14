@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Bloom's Peak",
+			"type": "Festival"
+        },
+        {
+            "name": "Pelor's Day",
+			"type": "Holy Day"
+        },
+        {
+            "name": "Mt. Dooom Erupts",
+            "type": "Natural Disaster"
+        }
+    ]
+}
