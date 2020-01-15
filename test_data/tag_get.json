@@ -1,0 +1,29 @@
+{
+    "data": {
+        "id": 35131,
+        "name": "Seven Kingdoms",
+        "entry": "\n<p>Just some references</p>\n",
+        "image": "tags/clthzBLiqZTET8tKUKibQZeKcOjQosz6nNWj5C77.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/tags/clthzBLiqZTET8tKUKibQZeKcOjQosz6nNWj5C77.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/tags/clthzBLiqZTET8tKUKibQZeKcOjQosz6nNWj5C77_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 436885,
+        "tags": [],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "type": "Lore",
+        "tag_id": null,
+        "colour": "red",
+        "entities": [
+            436884,
+            436892,
+            437024,
+            442245,
+            442249,
+            424136,
+            443498,
+            443499
+        ]
+    }
+}
