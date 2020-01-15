@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Flora",
+			"colour": "green"
+        },
+        {
+            "name": "Fauna",
+			"colour": "red"
+        },
+        {
+            "name": "Dungeon",
+            "colour": "black"
+        }
+    ]
+}
