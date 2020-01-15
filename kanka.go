@@ -37,7 +37,7 @@ type Client struct {
 	Races         *RaceService
 	Quests        *QuestService
 	Journals      *JournalService
-	Tags *TagService
+	Tags          *TagService
 }
 
 // NewClient returns an appropriately configured Client using the provided
