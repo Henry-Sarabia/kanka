@@ -1,0 +1,20 @@
+{
+    "data": {
+        "id": 42063,
+        "name": "Locatha",
+        "entry": "\n<p>Fish people!</p>\n",
+        "image": "races/0QRnoZ5GK8aOMMMGIIRycEhODN4KPXHAInSmwed2.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/races/0QRnoZ5GK8aOMMMGIIRycEhODN4KPXHAInSmwed2.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/races/0QRnoZ5GK8aOMMMGIIRycEhODN4KPXHAInSmwed2_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 424136,
+        "tags": [
+            35131
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "type": "Amphibious",
+        "race_id": 44044
+    }
+}
