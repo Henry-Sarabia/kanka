@@ -1,0 +1,20 @@
+{
+    "data": {
+        "id": 1142,
+        "name": "A Dissertation on the Shortcomings of Dead Reckoning",
+        "entry": "\n<div>\n<p>A small book with an unremarkable beryl-colored cover. The book is titled \"A Dissertation on the Shortcomings of Dead Reckoning\". The author is Alec Grisbane.</p>\n<p>The book is a commentary on the current state of nautical navigation and exploration. The author proposes that dead reckoning is inaccurate, inefficient, and ultimately dangerous.</p>\n</div>\n<p>The introduction begins with the supposition that dead reckoning should be done away with completely in favor of a new method of navigation involving accurate timekeeping, nautical velocity measurements, and a knowledge of astronomy.</p>\n<p>The author spends the next few pages explaining why dead reckoning is the primary form of nautical navigation in the modern era and how it is generally accomplished.</p>\n<p>The author then spends some time going into detail about the myriad methods of timekeeping at sea. Of the numerous approaches, none are accurate enough for meaningful use, he argues. This section of the essay is lengthier than one would expect.</p>\n<p>The author continues with details concerning the main method of velocity measurement and, more specifically, the inaccuracies it can produce. He posits that the lack of alternative methods is due to the corresponding lack of ingenuity and education of maritime explorers.</p>\n<p>The author digresses briefly to discuss the imprecision of maritime cartographers and their share of the blame for dead reckoning's proliferation.</p>\n<p>Subsequently, the author returns to his main point and expounds on the culmination of the aforementioned inadequacies in regards to the mechanisms for timekeeping, velocity measurement, and nautical cartography. The sum of these parts, he argues, establishes a flawed system putting maritime explorers and traders at grave risk when setting out to sea. What's worse, he continues, is the fundamental lack of options they have available to them if they are fortuitous enough, or unfortuitous enough depending on your worldview, to recognize their miscalculation while in the open ocean.</p>\n<p>The author closes with a cursory summation of his argument.</p>\n<p>Notably, the author does not propose a material alternative to dead reckoning.</p>\n",
+        "image": "journals/ZpHh9IXq79rbVojliMS2nJu4Rm7yfpxFRnVQ6tG8.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/journals/ZpHh9IXq79rbVojliMS2nJu4Rm7yfpxFRnVQ6tG8.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/journals/ZpHh9IXq79rbVojliMS2nJu4Rm7yfpxFRnVQ6tG8_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 80946,
+        "tags": [],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "location_id": 25989,
+        "character_id": 24657,
+        "date": "2020-01-15",
+        "type": "Treatise"
+    }
+}

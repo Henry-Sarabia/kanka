@@ -36,6 +36,7 @@ type Client struct {
 	Events        *EventService
 	Races         *RaceService
 	Quests        *QuestService
+	Journals      *JournalService
 }
 
 // NewClient returns an appropriately configured Client using the provided
@@ -63,6 +64,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Events = &EventService{client: c, end: EndpointEvent}
 	c.Races = &RaceService{client: c, end: EndpointRace}
 	c.Quests = &QuestService{client: c, end: EndpointQuest}
+	c.Journals = &JournalService{client: c, end: EndpointJournal}
 
 	return c
 }
