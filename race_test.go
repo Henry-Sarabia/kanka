@@ -10,30 +10,30 @@ import (
 )
 
 const (
-	testEventIndex  string = "test_data/event_index.json"
-	testEventGet    string = "test_data/event_get.json"
-	testEventCreate string = "test_data/event_create.json"
-	testEventUpdate string = "test_data/event_update.json"
+	testRaceIndex  string = "test_data/race_index.json"
+	testRaceGet    string = "test_data/race_get.json"
+	testRaceCreate string = "test_data/race_create.json"
+	testRaceUpdate string = "test_data/race_update.json"
 )
 
-func TestEventService_Index(t *testing.T) {
-	evts := []*Event{
-		&Event{
-			SimpleEvent: SimpleEvent{
-				Name: "Bloom's Peak",
-				Type: "Festival",
+func TestRaceService_Index(t *testing.T) {
+	races := []*Race{
+		&Race{
+			SimpleRace: SimpleRace{
+				Name: "Human",
+				Type: "Bipedal",
 			},
 		},
-		&Event{
-			SimpleEvent: SimpleEvent{
-				Name: "Pelor's Day",
-				Type: "Holy Day",
+		&Race{
+			SimpleRace: SimpleRace{
+				Name: "Halfling",
+				Type: "Bipedal",
 			},
 		},
-		&Event{
-			SimpleEvent: SimpleEvent{
-				Name: "Mt. Dooom Erupts",
-				Type: "Natural Disaster",
+		&Race{
+			SimpleRace: SimpleRace{
+				Name: "Centaur",
+				Type: "Quadrapedal",
 			},
 		},
 	}
@@ -49,21 +49,21 @@ func TestEventService_Index(t *testing.T) {
 		status  int
 		file    string
 		args    args
-		want    []*Event
+		want    []*Race
 		wantErr bool
 	}{
 		{
 			name:    "StatusOK, valid response, valid args",
 			status:  http.StatusOK,
-			file:    testEventIndex,
+			file:    testRaceIndex,
 			args:    args{campID: 5272, sync: now},
-			want:    evts,
+			want:    races,
 			wantErr: false,
 		},
 		{
 			name:    "Status OK, valid response, invalid args",
 			status:  http.StatusOK,
-			file:    testEventIndex,
+			file:    testRaceIndex,
 			args:    args{campID: -123, sync: now},
 			want:    nil,
 			wantErr: true,
@@ -119,7 +119,7 @@ func TestEventService_Index(t *testing.T) {
 
 			c, _ := testClient(test.status, f)
 
-			got, err := c.Events.Index(test.args.campID, test.args.sync)
+			got, err := c.Races.Index(test.args.campID, test.args.sync)
 			if (err != nil) != test.wantErr {
 				t.Fatalf("got err?: <%t>, want err?: <%t>\nerror: <%v>", (err != nil), test.wantErr, err)
 			}
@@ -130,68 +130,67 @@ func TestEventService_Index(t *testing.T) {
 	}
 }
 
-func TestEventService_Get(t *testing.T) {
-	evt := &Event{
-		SimpleEvent: SimpleEvent{
-			Name:       "Winter's Crest",
-			Entry:      "\n<p>A fantastic festival!</p>\n",
-			Date:       "First day of Frostbloom",
-			Image:      "events/pKtVTVLA776DKxNq3PMquVmNGmg3rJVboEJcje8j.jpeg",
-			IsPrivate:  false,
-			Tags:       []int{35131},
-			LocationID: 115366,
-			Type:       "Festival",
+func TestRaceService_Get(t *testing.T) {
+	race := &Race{
+		SimpleRace: SimpleRace{
+			Name:      "Locatha",
+			Entry:     "\n<p>Fish people!</p>\n",
+			Image:     "races/0QRnoZ5GK8aOMMMGIIRycEhODN4KPXHAInSmwed2.jpeg",
+			IsPrivate: false,
+			Tags:      []int{35131},
+			Type:      "Amphibious",
+			RaceID:    44044,
 		},
-		ID:             15008,
-		ImageFull:      "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/events/pKtVTVLA776DKxNq3PMquVmNGmg3rJVboEJcje8j.jpeg",
-		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/events/pKtVTVLA776DKxNq3PMquVmNGmg3rJVboEJcje8j_thumb.jpeg",
+		ID:             42063,
+		ImageFull:      "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/races/0QRnoZ5GK8aOMMMGIIRycEhODN4KPXHAInSmwed2.jpeg",
+		ImageThumb:     "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/races/0QRnoZ5GK8aOMMMGIIRycEhODN4KPXHAInSmwed2_thumb.jpeg",
 		HasCustomImage: true,
-		EntityID:       442245,
+		EntityID:       424136,
 		CreatedBy:      5600,
 		UpdatedBy:      5600,
 	}
 
 	type args struct {
 		campID int
-		evtID  int
+		raceID int
 	}
 	tests := []struct {
 		name    string
 		status  int
 		file    string
 		args    args
-		want    *Event
+		want    *Race
 		wantErr bool
 	}{
 		{
 			name:    "StatusOK, valid response, valid args",
 			status:  http.StatusOK,
-			file:    testEventGet,
-			args:    args{campID: 5272, evtID: 15008},
-			want:    evt,
+			file:    testRaceGet,
+			args:    args{campID: 5272, raceID: 42063},
+			want:    race,
 			wantErr: false,
 		},
 		{
 			name:    "Status OK, valid response, invalid campID",
 			status:  http.StatusOK,
-			file:    testEventGet,
-			args:    args{campID: -123, evtID: 15008},
+			file:    testRaceGet,
+			args:    args{campID: -123, raceID: 42063},
 			want:    nil,
 			wantErr: true,
 		},
 		{
-			name:    "Status OK, valid response, invalid evtID",
+			name:    "Status OK, valid response, invalid raceID",
 			status:  http.StatusOK,
-			file:    testEventGet,
-			args:    args{campID: 5272, evtID: -123},
+			file:    testRaceGet,
+			args:    args{campID: 5272, raceID: -123},
 			want:    nil,
 			wantErr: true,
 		},
 		{
 			name:    "Status OK, valid response, invalid args",
 			status:  http.StatusOK,
-			file:    testEventGet,
-			args:    args{campID: -123, evtID: -123},
+			file:    testRaceGet,
+			args:    args{campID: -123, raceID: -123},
 			want:    nil,
 			wantErr: true,
 		},
@@ -199,7 +198,7 @@ func TestEventService_Get(t *testing.T) {
 			name:    "Status OK, empty response, valid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 15008},
+			args:    args{campID: 5272, raceID: 42063},
 			want:    nil,
 			wantErr: true,
 		},
@@ -207,7 +206,7 @@ func TestEventService_Get(t *testing.T) {
 			name:    "Status OK, empty response, invalid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: -123, evtID: -123},
+			args:    args{campID: -123, raceID: -123},
 			want:    nil,
 			wantErr: true,
 		},
@@ -215,7 +214,7 @@ func TestEventService_Get(t *testing.T) {
 			name:    "StatusUnauthorized, valid args",
 			status:  http.StatusUnauthorized,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 15008},
+			args:    args{campID: 5272, raceID: 42063},
 			want:    nil,
 			wantErr: true,
 		},
@@ -223,7 +222,7 @@ func TestEventService_Get(t *testing.T) {
 			name:    "StatusForbidden, valid args",
 			status:  http.StatusForbidden,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 15008},
+			args:    args{campID: 5272, raceID: 42063},
 			want:    nil,
 			wantErr: true,
 		},
@@ -231,7 +230,7 @@ func TestEventService_Get(t *testing.T) {
 			name:    "StatusNotFound, valid args",
 			status:  http.StatusNotFound,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 15008},
+			args:    args{campID: 5272, raceID: 42063},
 			want:    nil,
 			wantErr: true,
 		},
@@ -246,7 +245,7 @@ func TestEventService_Get(t *testing.T) {
 
 			c, _ := testClient(test.status, f)
 
-			got, err := c.Events.Get(test.args.campID, test.args.evtID)
+			got, err := c.Races.Get(test.args.campID, test.args.raceID)
 			if (err != nil) != test.wantErr {
 				t.Fatalf("got err?: <%t>, want err?: <%t>\nerror: <%v>", (err != nil), test.wantErr, err)
 			}
@@ -257,52 +256,52 @@ func TestEventService_Get(t *testing.T) {
 	}
 }
 
-func TestEventService_Create(t *testing.T) {
-	evt := SimpleEvent{
-		Name: "Ember's Peak",
-		Type: "Festival",
+func TestRaceService_Create(t *testing.T) {
+	race := SimpleRace{
+		Name: "Elf",
+		Type: "Bipedal",
 	}
 	type args struct {
 		campID int
-		evt    SimpleEvent
+		race   SimpleRace
 	}
 	tests := []struct {
 		name    string
 		status  int
 		file    string
 		args    args
-		want    *Event
+		want    *Race
 		wantErr bool
 	}{
 		{
 			name:    "StatusOK, valid response, valid args",
 			status:  http.StatusOK,
-			file:    testEventCreate,
-			args:    args{campID: 5272, evt: evt},
-			want:    &Event{SimpleEvent: evt},
+			file:    testRaceCreate,
+			args:    args{campID: 5272, race: race},
+			want:    &Race{SimpleRace: race},
 			wantErr: false,
 		},
 		{
 			name:    "Status OK, valid response, invalid campID",
 			status:  http.StatusOK,
-			file:    testEventCreate,
-			args:    args{campID: -123, evt: evt},
+			file:    testRaceCreate,
+			args:    args{campID: -123, race: race},
 			want:    nil,
 			wantErr: true,
 		},
 		{
-			name:    "Status OK, valid response, invalid event",
+			name:    "Status OK, valid response, invalid race",
 			status:  http.StatusOK,
-			file:    testEventCreate,
-			args:    args{campID: 5272, evt: SimpleEvent{}},
+			file:    testRaceCreate,
+			args:    args{campID: 5272, race: SimpleRace{}},
 			want:    nil,
 			wantErr: true,
 		},
 		{
 			name:    "Status OK, valid response, invalid args",
 			status:  http.StatusOK,
-			file:    testEventCreate,
-			args:    args{campID: -123, evt: SimpleEvent{}},
+			file:    testRaceCreate,
+			args:    args{campID: -123, race: SimpleRace{}},
 			want:    nil,
 			wantErr: true,
 		},
@@ -310,7 +309,7 @@ func TestEventService_Create(t *testing.T) {
 			name:    "Status OK, empty response, valid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evt: evt},
+			args:    args{campID: 5272, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -318,7 +317,7 @@ func TestEventService_Create(t *testing.T) {
 			name:    "Status OK, empty response, invalid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: -123, evt: SimpleEvent{}},
+			args:    args{campID: -123, race: SimpleRace{}},
 			want:    nil,
 			wantErr: true,
 		},
@@ -326,7 +325,7 @@ func TestEventService_Create(t *testing.T) {
 			name:    "StatusUnauthorized, valid args",
 			status:  http.StatusUnauthorized,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evt: evt},
+			args:    args{campID: 5272, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -334,7 +333,7 @@ func TestEventService_Create(t *testing.T) {
 			name:    "StatusForbidden, valid args",
 			status:  http.StatusForbidden,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evt: evt},
+			args:    args{campID: 5272, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -342,7 +341,7 @@ func TestEventService_Create(t *testing.T) {
 			name:    "StatusNotFound, valid args",
 			status:  http.StatusNotFound,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evt: evt},
+			args:    args{campID: 5272, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -357,7 +356,7 @@ func TestEventService_Create(t *testing.T) {
 
 			c, _ := testClient(test.status, f)
 
-			got, err := c.Events.Create(test.args.campID, test.args.evt)
+			got, err := c.Races.Create(test.args.campID, test.args.race)
 			if (err != nil) != test.wantErr {
 				t.Fatalf("got err?: <%t>, want err?: <%t>\nerror: <%v>", (err != nil), test.wantErr, err)
 			}
@@ -368,61 +367,61 @@ func TestEventService_Create(t *testing.T) {
 	}
 }
 
-func TestEventService_Update(t *testing.T) {
-	evt := SimpleEvent{
-		Name: "Lilit's Day",
-		Type: "Holy Day",
+func TestRaceService_Update(t *testing.T) {
+	race := SimpleRace{
+		Name: "Orc",
+		Type: "Bipedal",
 	}
 	type args struct {
 		campID int
-		evtID  int
-		evt    SimpleEvent
+		raceID int
+		race   SimpleRace
 	}
 	tests := []struct {
 		name    string
 		status  int
 		file    string
 		args    args
-		want    *Event
+		want    *Race
 		wantErr bool
 	}{
 		{
 			name:    "StatusOK, valid response, valid args",
 			status:  http.StatusOK,
-			file:    testEventUpdate,
-			args:    args{campID: 5272, evtID: 111, evt: evt},
-			want:    &Event{SimpleEvent: evt, ID: 111},
+			file:    testRaceUpdate,
+			args:    args{campID: 5272, raceID: 111, race: race},
+			want:    &Race{SimpleRace: race, ID: 111},
 			wantErr: false,
 		},
 		{
 			name:    "Status OK, valid response, invalid campID",
 			status:  http.StatusOK,
-			file:    testEventUpdate,
-			args:    args{campID: -123, evtID: 111, evt: evt},
+			file:    testRaceUpdate,
+			args:    args{campID: -123, raceID: 111, race: race},
 			want:    nil,
 			wantErr: true,
 		},
 		{
-			name:    "Status OK, valid response, invalid evtID",
+			name:    "Status OK, valid response, invalid raceID",
 			status:  http.StatusOK,
-			file:    testEventUpdate,
-			args:    args{campID: 5272, evtID: -123, evt: evt},
+			file:    testRaceUpdate,
+			args:    args{campID: 5272, raceID: -123, race: race},
 			want:    nil,
 			wantErr: true,
 		},
 		{
-			name:    "Status OK, valid response, invalid evt",
+			name:    "Status OK, valid response, invalid race",
 			status:  http.StatusOK,
-			file:    testEventUpdate,
-			args:    args{campID: 5272, evtID: 111, evt: SimpleEvent{}},
+			file:    testRaceUpdate,
+			args:    args{campID: 5272, raceID: 111, race: SimpleRace{}},
 			want:    nil,
 			wantErr: true,
 		},
 		{
 			name:    "Status OK, valid response, invalid args",
 			status:  http.StatusOK,
-			file:    testEventUpdate,
-			args:    args{campID: -123, evtID: -123, evt: SimpleEvent{}},
+			file:    testRaceUpdate,
+			args:    args{campID: -123, raceID: -123, race: SimpleRace{}},
 			want:    nil,
 			wantErr: true,
 		},
@@ -430,7 +429,7 @@ func TestEventService_Update(t *testing.T) {
 			name:    "Status OK, empty response, valid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 111, evt: evt},
+			args:    args{campID: 5272, raceID: 111, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -438,7 +437,7 @@ func TestEventService_Update(t *testing.T) {
 			name:    "Status OK, empty response, invalid args",
 			status:  http.StatusOK,
 			file:    testFileEmpty,
-			args:    args{campID: -123, evtID: -123, evt: SimpleEvent{}},
+			args:    args{campID: -123, raceID: -123, race: SimpleRace{}},
 			want:    nil,
 			wantErr: true,
 		},
@@ -446,7 +445,7 @@ func TestEventService_Update(t *testing.T) {
 			name:    "StatusUnauthorized, valid args",
 			status:  http.StatusUnauthorized,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 111, evt: evt},
+			args:    args{campID: 5272, raceID: 111, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -454,7 +453,7 @@ func TestEventService_Update(t *testing.T) {
 			name:    "StatusForbidden, valid args",
 			status:  http.StatusForbidden,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 111, evt: evt},
+			args:    args{campID: 5272, raceID: 111, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -462,7 +461,7 @@ func TestEventService_Update(t *testing.T) {
 			name:    "StatusNotFound, valid args",
 			status:  http.StatusNotFound,
 			file:    testFileEmpty,
-			args:    args{campID: 5272, evtID: 111, evt: evt},
+			args:    args{campID: 5272, raceID: 111, race: race},
 			want:    nil,
 			wantErr: true,
 		},
@@ -477,7 +476,7 @@ func TestEventService_Update(t *testing.T) {
 
 			c, _ := testClient(test.status, f)
 
-			got, err := c.Events.Update(test.args.campID, test.args.evtID, test.args.evt)
+			got, err := c.Races.Update(test.args.campID, test.args.raceID, test.args.race)
 			if (err != nil) != test.wantErr {
 				t.Fatalf("got err?: <%t>, want err?: <%t>\nerror: <%v>", (err != nil), test.wantErr, err)
 			}
@@ -488,10 +487,10 @@ func TestEventService_Update(t *testing.T) {
 	}
 }
 
-func TestEventService_Delete(t *testing.T) {
+func TestRaceService_Delete(t *testing.T) {
 	type args struct {
 		campID int
-		evtID  int
+		raceID int
 	}
 	tests := []struct {
 		name    string
@@ -502,43 +501,43 @@ func TestEventService_Delete(t *testing.T) {
 		{
 			name:    "StatusOK, valid args",
 			status:  http.StatusOK,
-			args:    args{campID: 5272, evtID: 111},
+			args:    args{campID: 5272, raceID: 111},
 			wantErr: false,
 		},
 		{
 			name:    "Status OK, invalid campID",
 			status:  http.StatusOK,
-			args:    args{campID: -123, evtID: 111},
+			args:    args{campID: -123, raceID: 111},
 			wantErr: true,
 		},
 		{
-			name:    "Status OK, invalid evtID",
+			name:    "Status OK, invalid raceID",
 			status:  http.StatusOK,
-			args:    args{campID: 5272, evtID: -123},
+			args:    args{campID: 5272, raceID: -123},
 			wantErr: true,
 		},
 		{
 			name:    "Status OK, invalid args",
 			status:  http.StatusOK,
-			args:    args{campID: -123, evtID: -123},
+			args:    args{campID: -123, raceID: -123},
 			wantErr: true,
 		},
 		{
 			name:    "StatusUnauthorized, valid args",
 			status:  http.StatusUnauthorized,
-			args:    args{campID: 5272, evtID: 111},
+			args:    args{campID: 5272, raceID: 111},
 			wantErr: true,
 		},
 		{
 			name:    "StatusForbidden, valid args",
 			status:  http.StatusForbidden,
-			args:    args{campID: 5272, evtID: 111},
+			args:    args{campID: 5272, raceID: 111},
 			wantErr: true,
 		},
 		{
 			name:    "StatusNotFound, valid args",
 			status:  http.StatusNotFound,
-			args:    args{campID: 5272, evtID: 111},
+			args:    args{campID: 5272, raceID: 111},
 			wantErr: true,
 		},
 	}
@@ -552,7 +551,7 @@ func TestEventService_Delete(t *testing.T) {
 
 			c, _ := testClient(test.status, f)
 
-			err = c.Events.Delete(test.args.campID, test.args.evtID)
+			err = c.Races.Delete(test.args.campID, test.args.raceID)
 			if (err != nil) != test.wantErr {
 				t.Fatalf("got err?: <%t>, want err?: <%t>\nerror: <%v>", (err != nil), test.wantErr, err)
 			}
