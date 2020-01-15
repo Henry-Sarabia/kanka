@@ -1,0 +1,24 @@
+{
+    "data": {
+        "id": 10394,
+        "name": "Save the Princess",
+        "entry": "\n<p>Just do it</p>\n",
+        "image": "quests/MWmHjSk0NvwkuZMXJyfIc1CIMBqBauUxpFjZIUK7.jpeg",
+        "image_full": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/quests/MWmHjSk0NvwkuZMXJyfIc1CIMBqBauUxpFjZIUK7.jpeg",
+        "image_thumb": "https://kanka-user-assets.s3.eu-central-1.amazonaws.com/quests/MWmHjSk0NvwkuZMXJyfIc1CIMBqBauUxpFjZIUK7_thumb.jpeg",
+        "has_custom_image": true,
+        "is_private": false,
+        "entity_id": 442249,
+        "tags": [
+            35131
+        ],
+        "created_by": 5600,
+        "updated_by": 5600,
+        "character_id": 116623,
+        "type": "Cliche",
+        "is_completed": false,
+        "quest_id": 10393,
+        "characters": 0,
+        "locations": 0
+    }
+}

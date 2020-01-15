@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "The Search for Excalibur",
+			"type": "Cliche"
+        },
+        {
+            "name": "Slay the Dragon",
+			"type": "Cliche"
+        },
+        {
+            "name": "Slay the Princess",
+            "type": "Original"
+        }
+    ]
+}
