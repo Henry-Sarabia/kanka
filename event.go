@@ -63,14 +63,14 @@ type EventService service
 // If a non-nil time is provided, Index will only return Events that have
 // been changed since that time.
 func (es *EventService) Index(campID int, sync *time.Time) ([]*Event, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(es.end)
+	end = end.concat(es.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -88,13 +88,13 @@ func (es *EventService) Index(campID int, sync *time.Time) ([]*Event, error) {
 // Get returns the Event associated with evtID from the Campaign
 // associated with campID.
 func (es *EventService) Get(campID int, evtID int) (*Event, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(es.end)
+	end = end.concat(es.end)
 
-	end, err = end.ID(evtID)
+	end, err = end.id(evtID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Event ID: %w", err)
 	}
@@ -115,11 +115,11 @@ func (es *EventService) Get(campID int, evtID int) (*Event, error) {
 // the provided SimpleEvent data.
 // Create returns the newly created Event.
 func (es *EventService) Create(campID int, evt SimpleEvent) (*Event, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(es.end)
+	end = end.concat(es.end)
 
 	b, err := json.Marshal(evt)
 	if err != nil {
@@ -142,13 +142,13 @@ func (es *EventService) Create(campID int, evt SimpleEvent) (*Event, error) {
 // Campaign associated with campID using the provided SimpleEvent data.
 // Update returns the newly updated Event.
 func (es *EventService) Update(campID int, evtID int, evt SimpleEvent) (*Event, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(es.end)
+	end = end.concat(es.end)
 
-	end, err = end.ID(evtID)
+	end, err = end.id(evtID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Event ID: %w", err)
 	}
@@ -173,13 +173,13 @@ func (es *EventService) Update(campID int, evtID int, evt SimpleEvent) (*Event, 
 // Delete deletes an existing Event associated with evtID from the
 // Campaign associated with campID.
 func (es *EventService) Delete(campID int, evtID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(es.end)
+	end = end.concat(es.end)
 
-	end, err = end.ID(evtID)
+	end, err = end.id(evtID)
 	if err != nil {
 		return fmt.Errorf("invalid Event ID: %w", err)
 	}

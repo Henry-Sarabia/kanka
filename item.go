@@ -65,14 +65,14 @@ type ItemService service
 // If a non-nil time is provided, Index will only return Items that have
 // been changed since that time.
 func (is *ItemService) Index(campID int, sync *time.Time) ([]*Item, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(is.end)
+	end = end.concat(is.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -90,13 +90,13 @@ func (is *ItemService) Index(campID int, sync *time.Time) ([]*Item, error) {
 // Get returns the Item associated with itemID from the Campaign
 // associated with campID.
 func (is *ItemService) Get(campID int, itemID int) (*Item, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(is.end)
+	end = end.concat(is.end)
 
-	end, err = end.ID(itemID)
+	end, err = end.id(itemID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Item ID: %w", err)
 	}
@@ -117,11 +117,11 @@ func (is *ItemService) Get(campID int, itemID int) (*Item, error) {
 // the provided SimpleItem data.
 // Create returns the newly created Item.
 func (is *ItemService) Create(campID int, item SimpleItem) (*Item, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(is.end)
+	end = end.concat(is.end)
 
 	b, err := json.Marshal(item)
 	if err != nil {
@@ -144,13 +144,13 @@ func (is *ItemService) Create(campID int, item SimpleItem) (*Item, error) {
 // Campaign associated with campID using the provided SimpleItem data.
 // Update returns the newly updated Item.
 func (is *ItemService) Update(campID int, itemID int, item SimpleItem) (*Item, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(is.end)
+	end = end.concat(is.end)
 
-	end, err = end.ID(itemID)
+	end, err = end.id(itemID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Item ID: %w", err)
 	}
@@ -175,13 +175,13 @@ func (is *ItemService) Update(campID int, itemID int, item SimpleItem) (*Item, e
 // Delete deletes an existing Item associated with itemID from the
 // Campaign associated with campID.
 func (is *ItemService) Delete(campID int, itemID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(is.end)
+	end = end.concat(is.end)
 
-	end, err = end.ID(itemID)
+	end, err = end.id(itemID)
 	if err != nil {
 		return fmt.Errorf("invalid Item ID: %w", err)
 	}

@@ -118,7 +118,7 @@ const paramRelated string = "?related=1"
 // get executes a GET request to the provided endpoint and stores the
 // unmarshaled JSON result in the provided empty interface.
 func (c *Client) get(end endpoint, result interface{}) error {
-	end = end.Append(paramRelated)
+	end = end.append(paramRelated)
 
 	req, err := c.request("GET", end, nil)
 	if err != nil {

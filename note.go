@@ -61,14 +61,14 @@ type NoteService service
 // If a non-nil time is provided, Index will only return Notes that have
 // been changed since that time.
 func (ns *NoteService) Index(campID int, sync *time.Time) ([]*Note, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ns.end)
+	end = end.concat(ns.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -86,13 +86,13 @@ func (ns *NoteService) Index(campID int, sync *time.Time) ([]*Note, error) {
 // Get returns the Note associated with noteID from the Campaign
 // associated with campID.
 func (ns *NoteService) Get(campID int, noteID int) (*Note, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ns.end)
+	end = end.concat(ns.end)
 
-	end, err = end.ID(noteID)
+	end, err = end.id(noteID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Note ID: %w", err)
 	}
@@ -113,11 +113,11 @@ func (ns *NoteService) Get(campID int, noteID int) (*Note, error) {
 // the provided SimpleNote data.
 // Create returns the newly created Note.
 func (ns *NoteService) Create(campID int, note SimpleNote) (*Note, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ns.end)
+	end = end.concat(ns.end)
 
 	b, err := json.Marshal(note)
 	if err != nil {
@@ -140,13 +140,13 @@ func (ns *NoteService) Create(campID int, note SimpleNote) (*Note, error) {
 // Campaign associated with campID using the provided SimpleNote data.
 // Update returns the newly updated Note.
 func (ns *NoteService) Update(campID int, noteID int, note SimpleNote) (*Note, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ns.end)
+	end = end.concat(ns.end)
 
-	end, err = end.ID(noteID)
+	end, err = end.id(noteID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Note ID: %w", err)
 	}
@@ -171,13 +171,13 @@ func (ns *NoteService) Update(campID int, noteID int, note SimpleNote) (*Note, e
 // Delete deletes an existing Note associated with noteID from the
 // Campaign associated with campID.
 func (ns *NoteService) Delete(campID int, noteID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ns.end)
+	end = end.concat(ns.end)
 
-	end, err = end.ID(noteID)
+	end, err = end.id(noteID)
 	if err != nil {
 		return fmt.Errorf("invalid Note ID: %w", err)
 	}

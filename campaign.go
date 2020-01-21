@@ -92,7 +92,7 @@ func (cs *CampaignService) Get(campID int) (*Campaign, error) {
 		Data *Campaign `json:"data"`
 	}
 
-	end, err := cs.end.ID(campID)
+	end, err := cs.end.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
@@ -112,12 +112,12 @@ const pathUsers string = "/users"
 func (cs *CampaignService) Members(campID int) ([]*Member, error) {
 	var wrap Members
 
-	end, err := cs.end.ID(campID)
+	end, err := cs.end.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
 
-	end = end.Append(pathUsers)
+	end = end.append(pathUsers)
 	err = cs.client.get(end, &wrap)
 	if err != nil {
 		return nil, fmt.Errorf("cannot get Members from Campaign with ID '%d': %w", campID, err)

@@ -64,14 +64,14 @@ type TagService service
 // If a non-nil time is provided, Index will only return Tags that have
 // been changed since that time.
 func (ts *TagService) Index(campID int, sync *time.Time) ([]*Tag, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ts.end)
+	end = end.concat(ts.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -89,13 +89,13 @@ func (ts *TagService) Index(campID int, sync *time.Time) ([]*Tag, error) {
 // Get returns the Tag associated with tagID from the Campaign
 // associated with campID.
 func (ts *TagService) Get(campID int, tagID int) (*Tag, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ts.end)
+	end = end.concat(ts.end)
 
-	end, err = end.ID(tagID)
+	end, err = end.id(tagID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Tag ID: %w", err)
 	}
@@ -116,11 +116,11 @@ func (ts *TagService) Get(campID int, tagID int) (*Tag, error) {
 // the provided SimpleTag data.
 // Create returns the newly created Tag.
 func (ts *TagService) Create(campID int, tag SimpleTag) (*Tag, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ts.end)
+	end = end.concat(ts.end)
 
 	b, err := json.Marshal(tag)
 	if err != nil {
@@ -143,13 +143,13 @@ func (ts *TagService) Create(campID int, tag SimpleTag) (*Tag, error) {
 // Campaign associated with campID using the provided SimpleTag data.
 // Update returns the newly updated Tag.
 func (ts *TagService) Update(campID int, tagID int, tag SimpleTag) (*Tag, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ts.end)
+	end = end.concat(ts.end)
 
-	end, err = end.ID(tagID)
+	end, err = end.id(tagID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Tag ID: %w", err)
 	}
@@ -174,13 +174,13 @@ func (ts *TagService) Update(campID int, tagID int, tag SimpleTag) (*Tag, error)
 // Delete deletes an existing Tag associated with tagID from the
 // Campaign associated with campID.
 func (ts *TagService) Delete(campID int, tagID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ts.end)
+	end = end.concat(ts.end)
 
-	end, err = end.ID(tagID)
+	end, err = end.id(tagID)
 	if err != nil {
 		return fmt.Errorf("invalid Tag ID: %w", err)
 	}
