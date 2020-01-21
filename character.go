@@ -90,14 +90,14 @@ type CharacterService service
 // If a non-nil time is provided, Index will only return Characters that have
 // been changed since that time.
 func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(cs.end)
+	end = end.concat(cs.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -115,13 +115,13 @@ func (cs *CharacterService) Index(campID int, sync *time.Time) ([]*Character, er
 // Get returns the Character associated with charID from the Campaign
 // associated with campID.
 func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(cs.end)
+	end = end.concat(cs.end)
 
-	end, err = end.ID(charID)
+	end, err = end.id(charID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Character ID: %w", err)
 	}
@@ -142,11 +142,11 @@ func (cs *CharacterService) Get(campID int, charID int) (*Character, error) {
 // the provided SimpleCharacter data.
 // Create returns the newly created Character.
 func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(cs.end)
+	end = end.concat(cs.end)
 
 	b, err := json.Marshal(ch)
 	if err != nil {
@@ -169,13 +169,13 @@ func (cs *CharacterService) Create(campID int, ch SimpleCharacter) (*Character, 
 // Campaign associated with campID using the provided SimpleCharacter data.
 // Update returns the newly updated Character.
 func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (*Character, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(cs.end)
+	end = end.concat(cs.end)
 
-	end, err = end.ID(charID)
+	end, err = end.id(charID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Character ID: %w", err)
 	}
@@ -200,13 +200,13 @@ func (cs *CharacterService) Update(campID int, charID int, ch SimpleCharacter) (
 // Delete deletes an existing Character associated with charID from the
 // Campaign associated with campID.
 func (cs *CharacterService) Delete(campID int, charID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(cs.end)
+	end = end.concat(cs.end)
 
-	end, err = end.ID(charID)
+	end, err = end.id(charID)
 	if err != nil {
 		return fmt.Errorf("invalid Character ID: %w", err)
 	}

@@ -65,14 +65,14 @@ type FamilyService service
 // If a non-nil time is provided, Index will only return Families that have
 // been changed since that time.
 func (fs *FamilyService) Index(campID int, sync *time.Time) ([]*Family, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(fs.end)
+	end = end.concat(fs.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -90,13 +90,13 @@ func (fs *FamilyService) Index(campID int, sync *time.Time) ([]*Family, error) {
 // Get returns the Family associated with famID from the Campaign
 // associated with campID.
 func (fs *FamilyService) Get(campID int, famID int) (*Family, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(fs.end)
+	end = end.concat(fs.end)
 
-	end, err = end.ID(famID)
+	end, err = end.id(famID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Family ID: %w", err)
 	}
@@ -117,11 +117,11 @@ func (fs *FamilyService) Get(campID int, famID int) (*Family, error) {
 // the provided SimpleFamily data.
 // Create returns the newly created Family.
 func (fs *FamilyService) Create(campID int, fam SimpleFamily) (*Family, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(fs.end)
+	end = end.concat(fs.end)
 
 	b, err := json.Marshal(fam)
 	if err != nil {
@@ -144,13 +144,13 @@ func (fs *FamilyService) Create(campID int, fam SimpleFamily) (*Family, error) {
 // Campaign associated with campID using the provided SimpleFamily data.
 // Update returns the newly updated Family.
 func (fs *FamilyService) Update(campID int, famID int, fam SimpleFamily) (*Family, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(fs.end)
+	end = end.concat(fs.end)
 
-	end, err = end.ID(famID)
+	end, err = end.id(famID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Family ID: %w", err)
 	}
@@ -175,13 +175,13 @@ func (fs *FamilyService) Update(campID int, famID int, fam SimpleFamily) (*Famil
 // Delete deletes an existing Family associated with famID from the
 // Campaign associated with campID.
 func (fs *FamilyService) Delete(campID int, famID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(fs.end)
+	end = end.concat(fs.end)
 
-	end, err = end.ID(famID)
+	end, err = end.id(famID)
 	if err != nil {
 		return fmt.Errorf("invalid Family ID: %w", err)
 	}

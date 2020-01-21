@@ -66,14 +66,14 @@ type LocationService service
 // If a non-nil time is provided, Index will only return Locations that have
 // been changed since that time.
 func (ls *LocationService) Index(campID int, sync *time.Time) ([]*Location, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ls.end)
+	end = end.concat(ls.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -91,13 +91,13 @@ func (ls *LocationService) Index(campID int, sync *time.Time) ([]*Location, erro
 // Get returns the Location associated with locID from the Campaign
 // associated with campID.
 func (ls *LocationService) Get(campID int, locID int) (*Location, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ls.end)
+	end = end.concat(ls.end)
 
-	end, err = end.ID(locID)
+	end, err = end.id(locID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Location ID: %w", err)
 	}
@@ -118,11 +118,11 @@ func (ls *LocationService) Get(campID int, locID int) (*Location, error) {
 // the provided SimpleLocation data.
 // Create returns the newly created Location.
 func (ls *LocationService) Create(campID int, loc SimpleLocation) (*Location, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ls.end)
+	end = end.concat(ls.end)
 
 	b, err := json.Marshal(loc)
 	if err != nil {
@@ -145,13 +145,13 @@ func (ls *LocationService) Create(campID int, loc SimpleLocation) (*Location, er
 // Campaign associated with campID using the provided SimpleLocation data.
 // Update returns the newly updated Location.
 func (ls *LocationService) Update(campID int, locID int, loc SimpleLocation) (*Location, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ls.end)
+	end = end.concat(ls.end)
 
-	end, err = end.ID(locID)
+	end, err = end.id(locID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Location ID: %w", err)
 	}
@@ -176,13 +176,13 @@ func (ls *LocationService) Update(campID int, locID int, loc SimpleLocation) (*L
 // Delete deletes an existing Location associated with locID from the
 // Campaign associated with campID.
 func (ls *LocationService) Delete(campID int, locID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(ls.end)
+	end = end.concat(ls.end)
 
-	end, err = end.ID(locID)
+	end, err = end.id(locID)
 	if err != nil {
 		return fmt.Errorf("invalid Location ID: %w", err)
 	}
