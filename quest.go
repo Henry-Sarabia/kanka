@@ -66,14 +66,14 @@ type QuestService service
 // If a non-nil time is provided, Index will only return Quests that have
 // been changed since that time.
 func (qs *QuestService) Index(campID int, sync *time.Time) ([]*Quest, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(qs.end)
+	end = end.concat(qs.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -91,13 +91,13 @@ func (qs *QuestService) Index(campID int, sync *time.Time) ([]*Quest, error) {
 // Get returns the Quest associated with qstID from the Campaign
 // associated with campID.
 func (qs *QuestService) Get(campID int, qstID int) (*Quest, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(qs.end)
+	end = end.concat(qs.end)
 
-	end, err = end.ID(qstID)
+	end, err = end.id(qstID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Quest ID: %w", err)
 	}
@@ -118,11 +118,11 @@ func (qs *QuestService) Get(campID int, qstID int) (*Quest, error) {
 // the provided SimpleQuest data.
 // Create returns the newly created Quest.
 func (qs *QuestService) Create(campID int, qst SimpleQuest) (*Quest, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(qs.end)
+	end = end.concat(qs.end)
 
 	b, err := json.Marshal(qst)
 	if err != nil {
@@ -145,13 +145,13 @@ func (qs *QuestService) Create(campID int, qst SimpleQuest) (*Quest, error) {
 // Campaign associated with campID using the provided SimpleQuest data.
 // Update returns the newly updated Quest.
 func (qs *QuestService) Update(campID int, qstID int, qst SimpleQuest) (*Quest, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(qs.end)
+	end = end.concat(qs.end)
 
-	end, err = end.ID(qstID)
+	end, err = end.id(qstID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Quest ID: %w", err)
 	}
@@ -176,13 +176,13 @@ func (qs *QuestService) Update(campID int, qstID int, qst SimpleQuest) (*Quest, 
 // Delete deletes an existing Quest associated with qstID from the
 // Campaign associated with campID.
 func (qs *QuestService) Delete(campID int, qstID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(qs.end)
+	end = end.concat(qs.end)
 
-	end, err = end.ID(qstID)
+	end, err = end.id(qstID)
 	if err != nil {
 		return fmt.Errorf("invalid Quest ID: %w", err)
 	}

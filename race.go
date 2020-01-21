@@ -62,14 +62,14 @@ type RaceService service
 // If a non-nil time is provided, Index will only return Races that have
 // been changed since that time.
 func (rs *RaceService) Index(campID int, sync *time.Time) ([]*Race, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(rs.end)
+	end = end.concat(rs.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -87,13 +87,13 @@ func (rs *RaceService) Index(campID int, sync *time.Time) ([]*Race, error) {
 // Get returns the Race associated with raceID from the Campaign
 // associated with campID.
 func (rs *RaceService) Get(campID int, raceID int) (*Race, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(rs.end)
+	end = end.concat(rs.end)
 
-	end, err = end.ID(raceID)
+	end, err = end.id(raceID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Race ID: %w", err)
 	}
@@ -114,11 +114,11 @@ func (rs *RaceService) Get(campID int, raceID int) (*Race, error) {
 // the provided SimpleRace data.
 // Create returns the newly created Race.
 func (rs *RaceService) Create(campID int, race SimpleRace) (*Race, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(rs.end)
+	end = end.concat(rs.end)
 
 	b, err := json.Marshal(race)
 	if err != nil {
@@ -141,13 +141,13 @@ func (rs *RaceService) Create(campID int, race SimpleRace) (*Race, error) {
 // Campaign associated with campID using the provided SimpleRace data.
 // Update returns the newly updated Race.
 func (rs *RaceService) Update(campID int, raceID int, race SimpleRace) (*Race, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(rs.end)
+	end = end.concat(rs.end)
 
-	end, err = end.ID(raceID)
+	end, err = end.id(raceID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Race ID: %w", err)
 	}
@@ -172,13 +172,13 @@ func (rs *RaceService) Update(campID int, raceID int, race SimpleRace) (*Race, e
 // Delete deletes an existing Race associated with raceID from the
 // Campaign associated with campID.
 func (rs *RaceService) Delete(campID int, raceID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(rs.end)
+	end = end.concat(rs.end)
 
-	end, err = end.ID(raceID)
+	end, err = end.id(raceID)
 	if err != nil {
 		return fmt.Errorf("invalid Race ID: %w", err)
 	}

@@ -64,14 +64,14 @@ type JournalService service
 // If a non-nil time is provided, Index will only return Journals that have
 // been changed since that time.
 func (js *JournalService) Index(campID int, sync *time.Time) ([]*Journal, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(js.end)
+	end = end.concat(js.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -89,13 +89,13 @@ func (js *JournalService) Index(campID int, sync *time.Time) ([]*Journal, error)
 // Get returns the Journal associated with jrnID from the Campaign
 // associated with campID.
 func (js *JournalService) Get(campID int, jrnID int) (*Journal, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(js.end)
+	end = end.concat(js.end)
 
-	end, err = end.ID(jrnID)
+	end, err = end.id(jrnID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Journal ID: %w", err)
 	}
@@ -116,11 +116,11 @@ func (js *JournalService) Get(campID int, jrnID int) (*Journal, error) {
 // the provided SimpleJournal data.
 // Create returns the newly created Journal.
 func (js *JournalService) Create(campID int, jrn SimpleJournal) (*Journal, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(js.end)
+	end = end.concat(js.end)
 
 	b, err := json.Marshal(jrn)
 	if err != nil {
@@ -143,13 +143,13 @@ func (js *JournalService) Create(campID int, jrn SimpleJournal) (*Journal, error
 // Campaign associated with campID using the provided SimpleJournal data.
 // Update returns the newly updated Journal.
 func (js *JournalService) Update(campID int, jrnID int, jrn SimpleJournal) (*Journal, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(js.end)
+	end = end.concat(js.end)
 
-	end, err = end.ID(jrnID)
+	end, err = end.id(jrnID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Journal ID: %w", err)
 	}
@@ -174,13 +174,13 @@ func (js *JournalService) Update(campID int, jrnID int, jrn SimpleJournal) (*Jou
 // Delete deletes an existing Journal associated with jrnID from the
 // Campaign associated with campID.
 func (js *JournalService) Delete(campID int, jrnID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(js.end)
+	end = end.concat(js.end)
 
-	end, err = end.ID(jrnID)
+	end, err = end.id(jrnID)
 	if err != nil {
 		return fmt.Errorf("invalid Journal ID: %w", err)
 	}

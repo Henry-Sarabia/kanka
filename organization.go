@@ -65,14 +65,14 @@ type OrganizationService service
 // If a non-nil time is provided, Index will only return Organizations that have
 // been changed since that time.
 func (os *OrganizationService) Index(campID int, sync *time.Time) ([]*Organization, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(os.end)
+	end = end.concat(os.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -90,13 +90,13 @@ func (os *OrganizationService) Index(campID int, sync *time.Time) ([]*Organizati
 // Get returns the Organization associated with orgID from the Campaign
 // associated with campID.
 func (os *OrganizationService) Get(campID int, orgID int) (*Organization, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(os.end)
+	end = end.concat(os.end)
 
-	end, err = end.ID(orgID)
+	end, err = end.id(orgID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Organization ID: %w", err)
 	}
@@ -117,11 +117,11 @@ func (os *OrganizationService) Get(campID int, orgID int) (*Organization, error)
 // the provided SimpleOrganization data.
 // Create returns the newly created Organization.
 func (os *OrganizationService) Create(campID int, org SimpleOrganization) (*Organization, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(os.end)
+	end = end.concat(os.end)
 
 	b, err := json.Marshal(org)
 	if err != nil {
@@ -144,13 +144,13 @@ func (os *OrganizationService) Create(campID int, org SimpleOrganization) (*Orga
 // Campaign associated with campID using the provided SimpleOrganization data.
 // Update returns the newly updated Organization.
 func (os *OrganizationService) Update(campID int, orgID int, org SimpleOrganization) (*Organization, error) {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(os.end)
+	end = end.concat(os.end)
 
-	end, err = end.ID(orgID)
+	end, err = end.id(orgID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Organization ID: %w", err)
 	}
@@ -175,13 +175,13 @@ func (os *OrganizationService) Update(campID int, orgID int, org SimpleOrganizat
 // Delete deletes an existing Organization associated with orgID from the
 // Campaign associated with campID.
 func (os *OrganizationService) Delete(campID int, orgID int) error {
-	end, err := EndpointCampaign.ID(campID)
+	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(os.end)
+	end = end.concat(os.end)
 
-	end, err = end.ID(orgID)
+	end, err = end.id(orgID)
 	if err != nil {
 		return fmt.Errorf("invalid Organization ID: %w", err)
 	}

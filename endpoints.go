@@ -43,28 +43,28 @@ const (
 	EndpointSearch endpoint = "search"
 )
 
-// Append returns an endpoint appended with the provided string.
-func (e endpoint) Append(s string) endpoint {
+// append returns an endpoint appended with the provided string.
+func (e endpoint) append(s string) endpoint {
 	return endpoint(string(e) + s)
 }
 
-// Concat returns an endpoint appropriately concatenated with the provided
+// concat returns an endpoint appropriately concatenated with the provided
 // endpoint.
-func (e endpoint) Concat(end endpoint) endpoint {
-	return e.Append("/" + string(end))
+func (e endpoint) concat(end endpoint) endpoint {
+	return e.append("/" + string(end))
 }
 
-// ID returns an endpoint appropriately formatted with the provided id.
-func (e endpoint) ID(id int) (endpoint, error) {
+// id returns an endpoint appropriately formatted with the provided id.
+func (e endpoint) id(id int) (endpoint, error) {
 	if id < 0 {
 		return "", fmt.Errorf("provided ID (%d) cannot be negative", id)
 	}
 
-	return e.Append("/" + strconv.Itoa(id)), nil
+	return e.append("/" + strconv.Itoa(id)), nil
 }
 
-// Sync returns an endpoint appropriately formatted with the provided lastSync
+// sync returns an endpoint appropriately formatted with the provided lastSync
 // time.
-func (e endpoint) Sync(t time.Time) endpoint {
-	return e.Append("/?lastSync=" + t.Format(time.RFC3339))
+func (e endpoint) sync(t time.Time) endpoint {
+	return e.append("/?lastSync=" + t.Format(time.RFC3339))
 }
