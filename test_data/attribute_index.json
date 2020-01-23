@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Troops",
+			"value": "500"
+        },
+        {
+            "name": "Population",
+			"value": "2000"
+        },
+        {
+            "name": "Title",
+            "value": "King"
+        }
+    ]
+} 

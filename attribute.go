@@ -14,6 +14,7 @@ import (
 type Attribute struct {
 	SimpleAttribute
 	ID        int       `json:"id"`
+	EntityID  int       `json:"entity_id"`
 	CreatedAt time.Time `json:"created_at"`
 	CreatedBy int       `json:"created_by"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -24,12 +25,11 @@ type Attribute struct {
 // SimpleAttribute is primarily used to create new attributes for posting to Kanka.
 type SimpleAttribute struct {
 	Name         string `json:"name"`
-	Value        string `json:"value"`
-	DefaultOrder int    `json:"default_order"`
-	Type         string `json:"type"`
-	EntityID     int    `json:"entity_id"`
-	IsPrivate    bool   `json:"is_private"`
-	APIKey       string `json:"api_key"`
+	Value        string `json:"value,omitempty"`
+	DefaultOrder int    `json:"default_order,omitempty"`
+	Type         string `json:"type,omitempty"`
+	IsPrivate    bool   `json:"is_private,omitempty"`
+	APIKey       string `json:"api_key,omitempty"`
 }
 
 // MarshalJSON marshals the SimpleAttribute into its JSON-encoded form if it
@@ -61,18 +61,18 @@ func (as *AttributeService) Index(campID int, entID int, sync *time.Time) ([]*At
 	var err error
 	end := EndpointCampaign
 
-	if end, err = end.ID(campID); err != nil {
+	if end, err = end.id(campID); err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(endpointEntity)
+	end = end.concat(endpointEntity)
 
-	if end, err = end.ID(entID); err != nil {
+	if end, err = end.id(entID); err != nil {
 		return nil, fmt.Errorf("invalid Entity ID: %w", err)
 	}
-	end = end.Concat(as.end)
+	end = end.concat(as.end)
 
 	if sync != nil {
-		end = end.Sync(*sync)
+		end = end.sync(*sync)
 	}
 
 	var wrap struct {
@@ -92,17 +92,17 @@ func (as *AttributeService) Get(campID int, entID int, atrID int) (*Attribute, e
 	var err error
 	end := EndpointCampaign
 
-	if end, err = end.ID(campID); err != nil {
+	if end, err = end.id(campID); err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(endpointEntity)
+	end = end.concat(endpointEntity)
 
-	if end, err = end.ID(entID); err != nil {
+	if end, err = end.id(entID); err != nil {
 		return nil, fmt.Errorf("invalid Entity ID: %w", err)
 	}
-	end = end.Concat(as.end)
+	end = end.concat(as.end)
 
-	if end, err = end.ID(atrID); err != nil {
+	if end, err = end.id(atrID); err != nil {
 		return nil, fmt.Errorf("invalid Attribute ID: %w", err)
 	}
 
@@ -124,15 +124,15 @@ func (as *AttributeService) Create(campID int, entID int, atr SimpleAttribute) (
 	var err error
 	end := EndpointCampaign
 
-	if end, err = end.ID(campID); err != nil {
+	if end, err = end.id(campID); err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(endpointEntity)
+	end = end.concat(endpointEntity)
 
-	if end, err = end.ID(entID); err != nil {
+	if end, err = end.id(entID); err != nil {
 		return nil, fmt.Errorf("invalid Entity ID: %w", err)
 	}
-	end = end.Concat(as.end)
+	end = end.concat(as.end)
 
 	b, err := json.Marshal(atr)
 	if err != nil {
@@ -158,17 +158,17 @@ func (as *AttributeService) Update(campID int, entID int, atrID int, atr SimpleA
 	var err error
 	end := EndpointCampaign
 
-	if end, err = end.ID(campID); err != nil {
+	if end, err = end.id(campID); err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(endpointEntity)
+	end = end.concat(endpointEntity)
 
-	if end, err = end.ID(entID); err != nil {
+	if end, err = end.id(entID); err != nil {
 		return nil, fmt.Errorf("invalid Entity ID: %w", err)
 	}
-	end = end.Concat(as.end)
+	end = end.concat(as.end)
 
-	if end, err = end.ID(atrID); err != nil {
+	if end, err = end.id(atrID); err != nil {
 		return nil, fmt.Errorf("invalid Attribute ID: %w", err)
 	}
 
@@ -194,17 +194,17 @@ func (as *AttributeService) Delete(campID int, entID int, atrID int) error {
 	var err error
 	end := EndpointCampaign
 
-	if end, err = end.ID(campID); err != nil {
+	if end, err = end.id(campID); err != nil {
 		return fmt.Errorf("invalid Campaign ID: %w", err)
 	}
-	end = end.Concat(endpointEntity)
+	end = end.concat(endpointEntity)
 
-	if end, err = end.ID(entID); err != nil {
+	if end, err = end.id(entID); err != nil {
 		return fmt.Errorf("invalid Entity ID: %w", err)
 	}
-	end = end.Concat(as.end)
+	end = end.concat(as.end)
 
-	if end, err = end.ID(atrID); err != nil {
+	if end, err = end.id(atrID); err != nil {
 		return fmt.Errorf("invalid Attribute ID: %w", err)
 	}
 
