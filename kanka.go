@@ -39,7 +39,8 @@ type Client struct {
 	Journals      *JournalService
 	Tags          *TagService
 
-	Attributes *AttributeService
+	Attributes   *AttributeService
+	EntityEvents *EntityEventService
 }
 
 // NewClient returns an appropriately configured Client using the provided
@@ -71,6 +72,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Tags = &TagService{client: c, end: EndpointTag}
 
 	c.Attributes = &AttributeService{client: c, end: EndpointAttribute}
+	c.EntityEvents = &EntityEventService{client: c, end: EndpointEntityEvent}
 
 	return c
 }
