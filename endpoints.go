@@ -37,6 +37,7 @@ const (
 	EndpointEntityNote        endpoint = "entity_notes"
 	EndpointEntityTag         endpoint = "entity_tags"
 	EndpointEntityRelation    endpoint = "relations"
+	endpointEntity            endpoint = "entities"
 
 	// Search
 	EndpointSearch endpoint = "search"
