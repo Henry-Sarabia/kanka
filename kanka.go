@@ -43,6 +43,7 @@ type Client struct {
 	EntityEvents      *EntityEventService
 	EntityInventories *EntityInventoryService
 	EntityNotes       *EntityNoteService
+	EntityTags        *EntityTagService
 }
 
 // NewClient returns an appropriately configured Client using the provided
@@ -77,6 +78,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.EntityEvents = &EntityEventService{client: c, end: EndpointEntityEvent}
 	c.EntityInventories = &EntityInventoryService{client: c, end: EndpointEntityInventory}
 	c.EntityNotes = &EntityNoteService{client: c, end: EndpointEntityNote}
+	c.EntityTags = &EntityTagService{client: c, end: EndpointEntityTag}
 
 	return c
 }
