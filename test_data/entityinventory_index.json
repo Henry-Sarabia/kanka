@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "entity_id": 111,
+            "item_id": 222,
+            "amount": 1
+        },
+        {
+            "entity_id": 333,
+            "item_id": 444,
+            "amount": 1000
+        },
+        {
+            "entity_id": 555,
+            "item_id": 666,
+            "amount": 999999
+        }
+    ]
+} 
