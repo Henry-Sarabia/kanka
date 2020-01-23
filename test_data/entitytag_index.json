@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "entity_id": 111,
+            "tag_id": 222
+        },
+        {
+            "entity_id": 333,
+            "tag_id": 444
+        },
+        {
+            "entity_id": 555,
+            "tag_id": 666
+        }
+    ]
+} 
