@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "name": "Memories",
+			"entity_id": 111
+        },
+        {
+            "name": "Secrets",
+			"entity_id": 222
+        },
+        {
+            "name": "Stashes",
+            "entity_id": 333
+        }
+    ]
+} 
