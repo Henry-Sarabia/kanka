@@ -1,0 +1,9 @@
+{
+    "data": {
+        "owner_id": 999,
+        "target_id": 101010,
+        "relation": "Destined",
+        "attitude": 0,
+        "id": 111
+    }
+} 
