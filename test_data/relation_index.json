@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "owner_id": 111,
+            "target_id": 222,
+            "relation": "Liege-lord",
+			"attitude": 50
+        },
+        {
+            "owner_id": 333,
+            "target_id": 444,
+            "relation": "Married",
+			"attitude": 80
+        },
+        {
+            "owner_id": 555,
+            "target_id": 666,
+            "relation": "Friend",
+            "attitude": 20
+        }
+    ]
+} 

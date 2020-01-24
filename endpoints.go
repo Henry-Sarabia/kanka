@@ -36,7 +36,7 @@ const (
 	EndpointEntityInventory   endpoint = "inventory"
 	EndpointEntityNote        endpoint = "entity_notes"
 	EndpointEntityTag         endpoint = "entity_tags"
-	EndpointEntityRelation    endpoint = "relations"
+	EndpointRelation          endpoint = "relations"
 	endpointEntity            endpoint = "entities"
 
 	// Search
