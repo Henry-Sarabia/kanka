@@ -39,6 +39,7 @@ func (c *Client) Search(campID int, qry string, sync *time.Time) ([]*Result, err
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
 	}
 	end = end.concat(EndpointSearch)
+	end = end.append("/" + qry)
 
 	if sync != nil {
 		end = end.sync(*sync)
