@@ -3,6 +3,8 @@ package kanka
 import (
 	"fmt"
 	"time"
+
+	"github.com/Henry-Sarabia/blank"
 )
 
 // Result contains the response to a search query.
@@ -34,6 +36,10 @@ type Results struct {
 
 // Search searches the Campaign associated with campID for the provided query.
 func (c *Client) Search(campID int, qry string, sync *time.Time) ([]*Result, error) {
+	if blank.Is(qry) {
+		return nil, fmt.Errorf("invalid search query")
+	}
+
 	end, err := EndpointCampaign.id(campID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid Campaign ID: %w", err)

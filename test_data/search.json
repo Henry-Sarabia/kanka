@@ -1,0 +1,50 @@
+{
+    "data": [
+        {
+            "id": 1194,
+            "entity_id": 80025,
+            "name": "Shop",
+            "image": "https://kanka.io/images/defaults/attribute_templates.jpg",
+            "image_thumb": "https://kanka.io/images/defaults/attribute_templates_thumb.jpg",
+            "has_custom_image": false,
+            "type": "attribute_template",
+            "tooltip": "Shop",
+            "url": "https://kanka.io/campaign/5272/attribute_templates/1194",
+            "is_attributes_private": 0,
+            "is_private": false,
+            "created_by": 5600,
+            "updated_by": 5600
+        },
+        {
+            "id": 26141,
+            "entity_id": 80918,
+            "name": "The Rope Shop",
+            "image": "https://kanka.io/images/defaults/locations.jpg",
+            "image_thumb": "https://kanka.io/images/defaults/locations_thumb.jpg",
+            "has_custom_image": false,
+            "type": "location",
+            "tooltip": "",
+            "url": "https://kanka.io/campaign/5272/locations/26141",
+            "is_attributes_private": 0,
+            "is_private": false,
+            "created_by": 5600,
+            "updated_by": 5600
+        },
+        {
+            "id": 912,
+            "entity_id": 443499,
+            "name": "At The Magic Shop",
+            "image": "https://kanka.io/images/defaults/conversations.jpg",
+            "image_thumb": "https://kanka.io/images/defaults/conversations_thumb.jpg",
+            "has_custom_image": false,
+            "type": "conversation",
+            "tooltip": "At The Magic Shop",
+            "url": "https://kanka.io/campaign/5272/conversations/912",
+            "is_attributes_private": 0,
+            "is_private": false,
+            "created_by": 5600,
+            "updated_by": 5600
+        }
+    ],
+    "sync": "2020-01-26T03:22:31.034959Z"
+}
