@@ -34,9 +34,6 @@ type SimpleMapPoint struct {
 // MarshalJSON marshals the SimpleMapPoint into its JSON-encoded form if it
 // has the required populated fields.
 func (sm SimpleMapPoint) MarshalJSON() ([]byte, error) {
-	if blank.Is(sm.Name) {
-		return nil, fmt.Errorf("cannot marshal SimpleMapPoint into JSON with a missing Name")
-	}
 	if blank.Is(sm.Color) {
 		return nil, fmt.Errorf("cannot marshal SimpleMapPoint into JSON with a missing Color")
 	}
@@ -109,7 +106,7 @@ func (ms *MapPointService) Create(campID int, locID int, mp SimpleMapPoint) (*Ma
 
 	b, err := json.Marshal(mp)
 	if err != nil {
-		return nil, fmt.Errorf("cannot marshal SimpleMapPoint (Name: %s): %w", mp.Name, err)
+		return nil, fmt.Errorf("cannot marshal SimpleMapPoint (Name: %s, TargetEntityID: %d): %w", mp.Name, mp.TargetEntityID, err)
 	}
 
 	var wrap struct {
@@ -117,73 +114,8 @@ func (ms *MapPointService) Create(campID int, locID int, mp SimpleMapPoint) (*Ma
 	}
 
 	if err = ms.client.post(end, bytes.NewReader(b), &wrap); err != nil {
-		return nil, fmt.Errorf("cannot create MapPoint (Name: %s) for Campaign (ID: %d): %w", mp.Name, campID, err)
+		return nil, fmt.Errorf("cannot create MapPoint (Name: %s, TargetEntityID: %d) for Campaign (ID: %d): %w", mp.Name, mp.TargetEntityID, campID, err)
 	}
 
 	return wrap.Data, nil
-}
-
-// Update updates an existing MapPoint associated with mpID for the location
-// associated with locID from the Campaign associated with campID using the
-// provided SimpleMapPoint data.
-// Update returns the newly updated MapPoint.
-func (ms *MapPointService) Update(campID int, locID int, mpID int, mp SimpleMapPoint) (*MapPoint, error) {
-	var err error
-	end := EndpointCampaign
-
-	if end, err = end.id(campID); err != nil {
-		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
-	}
-	end = end.concat(EndpointLocation)
-
-	if end, err = end.id(locID); err != nil {
-		return nil, fmt.Errorf("invalid Location ID: %w", err)
-	}
-	end = end.concat(ms.end)
-
-	if end, err = end.id(mpID); err != nil {
-		return nil, fmt.Errorf("invalid MapPoint ID: %w", err)
-	}
-
-	b, err := json.Marshal(mp)
-	if err != nil {
-		return nil, fmt.Errorf("cannot marshal SimpleMapPoint (Name: %s): %w", mp.Name, err)
-	}
-
-	var wrap struct {
-		Data *MapPoint `json:"data"`
-	}
-
-	if err = ms.client.put(end, bytes.NewReader(b), &wrap); err != nil {
-		return nil, fmt.Errorf("cannot update MapPoint (Name: %s) for Campaign (ID: %d): '%w'", mp.Name, campID, err)
-	}
-
-	return wrap.Data, nil
-}
-
-// Delete deletes an existing MapPoint associated with mpID from the
-// Campaign associated with campID.
-func (ms *MapPointService) Delete(campID int, locID int, mpID int) error {
-	var err error
-	end := EndpointCampaign
-
-	if end, err = end.id(campID); err != nil {
-		return fmt.Errorf("invalid Campaign ID: %w", err)
-	}
-	end = end.concat(EndpointLocation)
-
-	if end, err = end.id(locID); err != nil {
-		return fmt.Errorf("invalid Location ID: %w", err)
-	}
-	end = end.concat(ms.end)
-
-	if end, err = end.id(mpID); err != nil {
-		return fmt.Errorf("invalid MapPoint ID: %w", err)
-	}
-
-	if err = ms.client.delete(end); err != nil {
-		return fmt.Errorf("cannot delete MapPoint (ID: %d) for Campaign (ID: %d): %w", mpID, campID, err)
-	}
-
-	return nil
 }
