@@ -1,0 +1,35 @@
+{
+    "data": [
+        {
+            "target_entity_id": null,
+            "name": "Courtyard",
+            "axis_x": 608,
+            "axis_y": 471,
+            "colour": "#2e7e35",
+            "icon": "castle-emblem",
+            "shape": "circle",
+            "size": "standard"
+        },
+        {
+            "target_entity_id": null,
+            "name": "Smithy",
+            "axis_x": 557,
+            "axis_y": 689,
+            "colour": "#000000",
+            "icon": "anvil",
+            "shape": "square",
+            "size": "standard"
+        },
+        {
+            "target_entity_id": null,
+            "name": "Armory",
+            "axis_x": 593,
+            "axis_y": 355,
+            "colour": "#0000ff",
+            "icon": "shield",
+            "shape": "square",
+            "size": "standard"
+        }
+    ],
+    "sync": "2020-01-29T19:13:16.447572Z"
+}

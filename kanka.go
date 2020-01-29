@@ -29,6 +29,7 @@ type Client struct {
 	Campaigns     *CampaignService
 	Characters    *CharacterService
 	Locations     *LocationService
+	MapPoints     *MapPointService
 	Families      *FamilyService
 	Organizations *OrganizationService
 	Items         *ItemService
@@ -65,6 +66,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Campaigns = &CampaignService{client: c, end: EndpointCampaign}
 	c.Characters = &CharacterService{client: c, end: EndpointCharacter}
 	c.Locations = &LocationService{client: c, end: EndpointLocation}
+	c.MapPoints = &MapPointService{client: c, end: EndpointMapPoint}
 	c.Families = &FamilyService{client: c, end: EndpointFamily}
 	c.Organizations = &OrganizationService{client: c, end: EndpointOrganization}
 	c.Items = &ItemService{client: c, end: EndpointItem}

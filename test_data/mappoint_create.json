@@ -1,0 +1,12 @@
+{
+    "data": {
+        "target_entity_id": null,
+        "name": "Tower",
+        "axis_x": 300,
+        "axis_y": 300,
+        "colour": "white",
+        "icon": "tower",
+        "shape": "circle",
+        "size": "standard"
+    }
+}

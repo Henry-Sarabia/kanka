@@ -15,6 +15,7 @@ const (
 	EndpointCampaign     endpoint = "campaigns"
 	EndpointCharacter    endpoint = "characters"
 	EndpointLocation     endpoint = "locations"
+	EndpointMapPoint     endpoint = "map_points"
 	EndpointFamily       endpoint = "families"
 	EndpointOrganization endpoint = "organisations"
 	EndpointItem         endpoint = "items"
