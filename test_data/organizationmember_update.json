@@ -1,0 +1,9 @@
+{
+    "data": {
+        "character_id": 111,
+        "is_private": false,
+        "organisation_id": 222,
+        "role": "Treasurer",
+        "id": 111
+    }
+}
