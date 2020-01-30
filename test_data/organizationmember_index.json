@@ -1,0 +1,47 @@
+{
+    "data": [
+        {
+            "character_id": 118490,
+            "created_by": null,
+            "id": 42070,
+            "is_private": false,
+            "organisation_id": 23579,
+            "role": "Leader",
+            "updated_by": null
+        },
+        {
+            "character_id": 126247,
+            "created_by": null,
+            "id": 48013,
+            "is_private": false,
+            "organisation_id": 23579,
+            "role": "Maester",
+            "updated_by": null
+        },
+        {
+            "character_id": 126248,
+            "created_by": null,
+            "id": 48017,
+            "is_private": false,
+            "organisation_id": 23579,
+            "role": "Soldier",
+            "updated_by": null
+        }
+    ],
+    "sync": "2020-01-29T21:07:09.410461Z",
+    "links": {
+        "first": "https://kanka.io/api/1.0/campaigns/5272/organisations/23579/organisation_members?page=1",
+        "last": "https://kanka.io/api/1.0/campaigns/5272/organisations/23579/organisation_members?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "https://kanka.io/api/1.0/campaigns/5272/organisations/23579/organisation_members",
+        "per_page": 45,
+        "to": 3,
+        "total": 3
+    }
+}

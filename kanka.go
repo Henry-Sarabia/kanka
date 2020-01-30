@@ -25,20 +25,21 @@ type Client struct {
 	token   string
 
 	// Services
-	Profiles      *ProfileService
-	Campaigns     *CampaignService
-	Characters    *CharacterService
-	Locations     *LocationService
-	MapPoints     *MapPointService
-	Families      *FamilyService
-	Organizations *OrganizationService
-	Items         *ItemService
-	Notes         *NoteService
-	Events        *EventService
-	Races         *RaceService
-	Quests        *QuestService
-	Journals      *JournalService
-	Tags          *TagService
+	Profiles            *ProfileService
+	Campaigns           *CampaignService
+	Characters          *CharacterService
+	Locations           *LocationService
+	MapPoints           *MapPointService
+	Families            *FamilyService
+	Organizations       *OrganizationService
+	OrganizationMembers *OrganizationMemberService
+	Items               *ItemService
+	Notes               *NoteService
+	Events              *EventService
+	Races               *RaceService
+	Quests              *QuestService
+	Journals            *JournalService
+	Tags                *TagService
 
 	Attributes        *AttributeService
 	EntityEvents      *EntityEventService
@@ -69,6 +70,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.MapPoints = &MapPointService{client: c, end: EndpointMapPoint}
 	c.Families = &FamilyService{client: c, end: EndpointFamily}
 	c.Organizations = &OrganizationService{client: c, end: EndpointOrganization}
+	c.OrganizationMembers = &OrganizationMemberService{client: c, end: EndpointOrganizationMember}
 	c.Items = &ItemService{client: c, end: EndpointItem}
 	c.Notes = &NoteService{client: c, end: EndpointNote}
 	c.Events = &EventService{client: c, end: EndpointEvent}
