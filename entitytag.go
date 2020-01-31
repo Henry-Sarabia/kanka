@@ -16,7 +16,7 @@ type EntityTag struct {
 }
 
 // SimpleEntityTag contains only the simple information about an entity tag.
-// SimpleEntityTag is primarily used to create new entitytags for posting to Kanka.
+// SimpleEntityTag is primarily used to create new entity tags for posting to Kanka.
 type SimpleEntityTag struct {
 	EntityID int `json:"entity_id"`
 	TagID    int `json:"tag_id"`

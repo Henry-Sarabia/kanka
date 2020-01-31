@@ -23,7 +23,7 @@ type EntityNote struct {
 }
 
 // SimpleEntityNote contains only the simple information about an entity note.
-// SimpleEntityNote is primarily used to create new entitynotes for posting to Kanka.
+// SimpleEntityNote is primarily used to create new entity notes for posting to Kanka.
 type SimpleEntityNote struct {
 	Name       string `json:"name"`
 	EntityID   int    `json:"entity_id"`

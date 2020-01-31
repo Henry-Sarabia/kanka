@@ -19,7 +19,7 @@ type EntityInventory struct {
 }
 
 // SimpleEntityInventory contains only the simple information about an entity inventory.
-// SimpleEntityInventory is primarily used to create new entity inventoryies for posting to Kanka.
+// SimpleEntityInventory is primarily used to create new entity inventories for posting to Kanka.
 type SimpleEntityInventory struct {
 	EntityID   int    `json:"entity_id"`
 	ItemID     int    `json:"item_id"`
@@ -32,9 +32,9 @@ type SimpleEntityInventory struct {
 // EntityInventoryService handles communication with the EntityInventory endpoint.
 type EntityInventoryService service
 
-// Index returns the list of all EntityInventoryies for the entity associated with
+// Index returns the list of all EntityInventories for the entity associated with
 // entID in the Campaign associated with campID.
-// If a non-nil time is provided, Index will only return EntityInventoryies that have
+// If a non-nil time is provided, Index will only return EntityInventories that have
 // been changed since that time.
 func (es *EntityInventoryService) Index(campID int, entID int, sync *time.Time) ([]*EntityInventory, error) {
 	var err error

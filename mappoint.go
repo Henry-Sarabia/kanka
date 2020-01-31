@@ -18,7 +18,7 @@ type MapPoint struct {
 }
 
 // SimpleMapPoint contains only the simple information about a map point.
-// SimpleMapPoint is primarily used to create new mappoints for posting to Kanka.
+// SimpleMapPoint is primarily used to create new map points for posting to Kanka.
 type SimpleMapPoint struct {
 	LocationID     int    `json:"location_id"`
 	TargetEntityID int    `json:"target_entity_id,omitempty"`

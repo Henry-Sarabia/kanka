@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// QuestCharacter contains information about a specific questcharacter.
+// QuestCharacter contains information about a specific quest character.
 // For more information, visit: https://kanka.io/en-US/docs/1.0/quests#quest-characters
 type QuestCharacter struct {
 	SimpleQuestCharacter
@@ -19,7 +19,7 @@ type QuestCharacter struct {
 }
 
 // SimpleQuestCharacter contains only the simple information about a questcharacter.
-// SimpleQuestCharacter is primarily used to create new questcharacters for posting to Kanka.
+// SimpleQuestCharacter is primarily used to create new quest characters for posting to Kanka.
 type SimpleQuestCharacter struct {
 	QuestID     int    `json:"quest_id"`
 	CharacterID int    `json:"character_id"`
