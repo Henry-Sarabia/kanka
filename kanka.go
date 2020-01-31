@@ -39,6 +39,7 @@ type Client struct {
 	Races               *RaceService
 	Quests              *QuestService
 	QuestCharacters     *QuestCharacterService
+	QuestLocations      *QuestLocationService
 	Journals            *JournalService
 	Tags                *TagService
 
@@ -78,6 +79,7 @@ func NewClient(token string, custom *http.Client) *Client {
 	c.Races = &RaceService{client: c, end: EndpointRace}
 	c.Quests = &QuestService{client: c, end: EndpointQuest}
 	c.QuestCharacters = &QuestCharacterService{client: c, end: EndpointQuestCharacters}
+	c.QuestLocations = &QuestLocationService{client: c, end: EndpointQuestLocation}
 	c.Journals = &JournalService{client: c, end: EndpointJournal}
 	c.Tags = &TagService{client: c, end: EndpointTag}
 

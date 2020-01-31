@@ -26,6 +26,7 @@ const (
 	EndpointRace               endpoint = "races"
 	EndpointQuest              endpoint = "quests"
 	EndpointQuestCharacters    endpoint = "quest_characters"
+	EndpointQuestLocation      endpoint = "quest_locations"
 	EndpointJournal            endpoint = "journals"
 	EndpointTag                endpoint = "tags"
 	EndpointConversation       endpoint = "conversations"
