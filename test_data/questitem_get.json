@@ -1,0 +1,11 @@
+{
+    "data": {
+        "created_by": null,
+        "description": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Priceless item</p>\r\n</body>\r\n</html>",
+        "id": 445,
+        "is_private": false,
+        "role": "Reward",
+        "updated_by": null,
+        "item_id": 123
+    }
+}
