@@ -85,6 +85,37 @@ func (es *EntityNoteService) Index(campID int, entID int, sync *time.Time) ([]*E
 	return wrap.Data, nil
 }
 
+// Get returns the EntityNote associated with evtID for the entity associated
+// with entID from the Campaign associated with campID.
+func (es *EntityNoteService) Get(campID int, entID int, evtID int) (*EntityNote, error) {
+	var err error
+	end := EndpointCampaign
+
+	if end, err = end.id(campID); err != nil {
+		return nil, fmt.Errorf("invalid Campaign ID: %w", err)
+	}
+	end = end.concat(endpointEntity)
+
+	if end, err = end.id(entID); err != nil {
+		return nil, fmt.Errorf("invalid Entity ID: %w", err)
+	}
+	end = end.concat(es.end)
+
+	if end, err = end.id(evtID); err != nil {
+		return nil, fmt.Errorf("invalid EntityNote ID: %w", err)
+	}
+
+	var wrap struct {
+		Data *EntityNote `json:"data"`
+	}
+
+	if err = es.client.get(end, &wrap); err != nil {
+		return nil, fmt.Errorf("cannot get EntityNote (ID: %d) from Campaign (ID: %d): %w", evtID, campID, err)
+	}
+
+	return wrap.Data, nil
+}
+
 // Create creates a new EntityNote for the entity associated with entID in the
 // Campaign associated with campID using the provided SimpleEntityNote data.
 // Create returns the newly created EntityNote.
