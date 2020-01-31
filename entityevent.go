@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// EntityEvent contains information about a specific entityevent.
+// EntityEvent contains information about a specific entity event.
 // For more information, visit: https://kanka.io/en-US/docs/1.0/entity-events
 // EntityEvent represents a specific calendar event relating to the parent
 // entity.
@@ -22,8 +22,8 @@ type EntityEvent struct {
 	UpdatedBy  int       `json:"updated_by"`
 }
 
-// SimpleEntityEvent contains only the simple information about a entityevent.
-// SimpleEntityEvent is primarily used to create new entityevents for posting to Kanka.
+// SimpleEntityEvent contains only the simple information about an entity event.
+// SimpleEntityEvent is primarily used to create new entity events for posting to Kanka.
 type SimpleEntityEvent struct {
 	Day            int    `json:"day"`
 	Month          int    `json:"month"`
