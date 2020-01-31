@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "quest_id": 111,
+            "location_id": 222,
+			"description": "An inn at the crossroads."
+        },
+        {
+			"quest_id": 333,
+            "location_id": 444,
+			"description": "A forest clearing."
+        },
+        {
+            "quest_id": 555,
+            "location_id": 666,
+			"description": "A dank cavern..."
+        }
+    ]
+}
