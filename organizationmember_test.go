@@ -441,7 +441,7 @@ func TestOrganizationMemberService_Delete(t *testing.T) {
 		{
 			name:    "Status OK, invalid orgID",
 			status:  http.StatusOK,
-			args:    args{campID: -123, orgID: -123, memID: 111},
+			args:    args{campID: 5272, orgID: -123, memID: 111},
 			wantErr: true,
 		},
 		{
