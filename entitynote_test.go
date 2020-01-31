@@ -153,10 +153,10 @@ func TestEntityNoteService_Get(t *testing.T) {
 			Name:       "Memories",
 			EntityID:   430214,
 			Entry:      "\n<ul>\n<li>Finding the Wind-up Chronicle</li>\n<li>Losing her older sister</li>\n<li>Creating her first gadget</li>\n</ul>\n",
+			IsPrivate:  false,
 			Visibility: "all",
 		},
 		ID:        17762,
-		IsPrivate: false,
 		CreatedBy: 5600,
 		UpdatedBy: 0,
 	}

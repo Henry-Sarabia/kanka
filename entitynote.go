@@ -17,7 +17,6 @@ type EntityNote struct {
 	CreatedAt time.Time `json:"created_at"`
 	CreatedBy int       `json:"created_by"`
 	ID        int       `json:"id"`
-	IsPrivate bool      `json:"is_private"`
 	UpdatedAt time.Time `json:"updated_at"`
 	UpdatedBy int       `json:"updated_by"`
 }
@@ -28,6 +27,7 @@ type SimpleEntityNote struct {
 	Name       string `json:"name"`
 	EntityID   int    `json:"entity_id"`
 	Entry      string `json:"entry,omitempty"`
+	IsPrivate  bool   `json:"is_private,omitempty"`
 	Visibility string `json:"visibility,omitempty"`
 }
 
