@@ -18,7 +18,7 @@ const (
 
 func TestRelationService_Index(t *testing.T) {
 	rels := []*Relation{
-		&Relation{
+		{
 			SimpleRelation: SimpleRelation{
 				OwnerID:  111,
 				TargetID: 222,
@@ -26,7 +26,7 @@ func TestRelationService_Index(t *testing.T) {
 				Attitude: 50,
 			},
 		},
-		&Relation{
+		{
 			SimpleRelation: SimpleRelation{
 				OwnerID:  333,
 				TargetID: 444,
@@ -34,7 +34,7 @@ func TestRelationService_Index(t *testing.T) {
 				Attitude: 80,
 			},
 		},
-		&Relation{
+		{
 			SimpleRelation: SimpleRelation{
 				OwnerID:  555,
 				TargetID: 666,

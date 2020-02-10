@@ -18,19 +18,19 @@ const (
 
 func TestNoteService_Index(t *testing.T) {
 	notes := []*Note{
-		&Note{
+		{
 			SimpleNote: SimpleNote{
 				Name: "To Emilia",
 				Type: "Letter",
 			},
 		},
-		&Note{
+		{
 			SimpleNote: SimpleNote{
 				Name: "A Private Diary",
 				Type: "Diary",
 			},
 		},
-		&Note{
+		{
 			SimpleNote: SimpleNote{
 				Name: "The Surrounding Verdant Forest: A Guide",
 				Type: "Book",

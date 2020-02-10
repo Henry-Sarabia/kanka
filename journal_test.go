@@ -18,19 +18,19 @@ const (
 
 func TestJournalService_Index(t *testing.T) {
 	jrns := []*Journal{
-		&Journal{
+		{
 			SimpleJournal: SimpleJournal{
 				Name: "How I Learned to Stop Worrying and Love The Eruption",
 				Type: "Treatise",
 			},
 		},
-		&Journal{
+		{
 			SimpleJournal: SimpleJournal{
 				Name: "What I Think About When I Think About Spiders",
 				Type: "Treatise",
 			},
 		},
-		&Journal{
+		{
 			SimpleJournal: SimpleJournal{
 				Name: "Easier Done Than Said",
 				Type: "Treatise",

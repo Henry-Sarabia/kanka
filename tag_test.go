@@ -18,19 +18,19 @@ const (
 
 func TestTagService_Index(t *testing.T) {
 	tags := []*Tag{
-		&Tag{
+		{
 			SimpleTag: SimpleTag{
 				Name:  "Flora",
 				Color: "green",
 			},
 		},
-		&Tag{
+		{
 			SimpleTag: SimpleTag{
 				Name:  "Fauna",
 				Color: "red",
 			},
 		},
-		&Tag{
+		{
 			SimpleTag: SimpleTag{
 				Name:  "Dungeon",
 				Color: "black",

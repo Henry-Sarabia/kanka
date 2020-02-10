@@ -16,15 +16,15 @@ const (
 
 func TestCampaignService_Index(t *testing.T) {
 	camps := []*Campaign{
-		&Campaign{
+		{
 			Name: "The Adventures of Adventurers",
 			ID:   111,
 		},
-		&Campaign{
+		{
 			Name: "The Heroics of Heroes and Heroines",
 			ID:   222,
 		},
-		&Campaign{
+		{
 			Name: "The Traversings of Travelers",
 			ID:   333,
 		},
@@ -105,7 +105,7 @@ func TestCampaignService_Get(t *testing.T) {
 		Visibility: "private",
 		Members: Members{
 			Data: []*Member{
-				&Member{
+				{
 					ID: 111,
 					User: User{
 						ID:     222,
@@ -208,7 +208,7 @@ func TestCampaignService_Get(t *testing.T) {
 
 func TestCampaignService_Members(t *testing.T) {
 	mems := []*Member{
-		&Member{
+		{
 			ID: 111,
 			User: User{
 				ID:     222,
@@ -216,7 +216,7 @@ func TestCampaignService_Members(t *testing.T) {
 				Avatar: "jon_brooding.png",
 			},
 		},
-		&Member{
+		{
 			ID: 333,
 			User: User{
 				ID:     444,
@@ -224,7 +224,7 @@ func TestCampaignService_Members(t *testing.T) {
 				Avatar: "daeny_burning_something.png",
 			},
 		},
-		&Member{
+		{
 			ID: 555,
 			User: User{
 				ID:     666,

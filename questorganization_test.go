@@ -17,21 +17,21 @@ const (
 
 func TestQuestOrganizationService_Index(t *testing.T) {
 	orgs := []*QuestOrganization{
-		&QuestOrganization{
+		{
 			SimpleQuestOrganization: SimpleQuestOrganization{
 				QuestID:        111,
 				OrganizationID: 222,
 				Role:           "King's Court",
 			},
 		},
-		&QuestOrganization{
+		{
 			SimpleQuestOrganization: SimpleQuestOrganization{
 				QuestID:        333,
 				OrganizationID: 444,
 				Role:           "Brave Companions",
 			},
 		},
-		&QuestOrganization{
+		{
 			SimpleQuestOrganization: SimpleQuestOrganization{
 				QuestID:        555,
 				OrganizationID: 666,

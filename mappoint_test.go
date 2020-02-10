@@ -17,7 +17,7 @@ const (
 
 func TestMapPointService_Index(t *testing.T) {
 	mps := []*MapPoint{
-		&MapPoint{
+		{
 			SimpleMapPoint: SimpleMapPoint{
 				TargetEntityID: 0,
 				Name:           "Courtyard",
@@ -29,7 +29,7 @@ func TestMapPointService_Index(t *testing.T) {
 				Size:           "standard",
 			},
 		},
-		&MapPoint{
+		{
 			SimpleMapPoint: SimpleMapPoint{
 				TargetEntityID: 0,
 				Name:           "Smithy",
@@ -41,7 +41,7 @@ func TestMapPointService_Index(t *testing.T) {
 				Size:           "standard",
 			},
 		},
-		&MapPoint{
+		{
 			SimpleMapPoint: SimpleMapPoint{
 				TargetEntityID: 0,
 				Name:           "Armory",

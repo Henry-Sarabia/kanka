@@ -18,19 +18,19 @@ const (
 
 func TestQuestService_Index(t *testing.T) {
 	qsts := []*Quest{
-		&Quest{
+		{
 			SimpleQuest: SimpleQuest{
 				Name: "The Search for Excalibur",
 				Type: "Cliche",
 			},
 		},
-		&Quest{
+		{
 			SimpleQuest: SimpleQuest{
 				Name: "Slay the Dragon",
 				Type: "Cliche",
 			},
 		},
-		&Quest{
+		{
 			SimpleQuest: SimpleQuest{
 				Name: "Slay the Princess",
 				Type: "Original",
