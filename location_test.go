@@ -18,19 +18,19 @@ const (
 
 func TestLocationService_Index(t *testing.T) {
 	locs := []*Location{
-		&Location{
+		{
 			SimpleLocation: SimpleLocation{
 				Name: "King's Landing",
 				Type: "Capital",
 			},
 		},
-		&Location{
+		{
 			SimpleLocation: SimpleLocation{
 				Name: "Dragonstone",
 				Type: "Castle",
 			},
 		},
-		&Location{
+		{
 			SimpleLocation: SimpleLocation{
 				Name: "Crossroads Inn",
 				Type: "Inn",

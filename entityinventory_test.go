@@ -17,21 +17,21 @@ const (
 
 func TestEntityInventoryService_Index(t *testing.T) {
 	invs := []*EntityInventory{
-		&EntityInventory{
+		{
 			SimpleEntityInventory: SimpleEntityInventory{
 				EntityID: 111,
 				ItemID:   222,
 				Amount:   1,
 			},
 		},
-		&EntityInventory{
+		{
 			SimpleEntityInventory: SimpleEntityInventory{
 				EntityID: 333,
 				ItemID:   444,
 				Amount:   1000,
 			},
 		},
-		&EntityInventory{
+		{
 			SimpleEntityInventory: SimpleEntityInventory{
 				EntityID: 555,
 				ItemID:   666,

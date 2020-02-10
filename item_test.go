@@ -18,19 +18,19 @@ const (
 
 func TestItemService_Index(t *testing.T) {
 	items := []*Item{
-		&Item{
+		{
 			SimpleItem: SimpleItem{
 				Name: "Sword",
 				Type: "Weapon",
 			},
 		},
-		&Item{
+		{
 			SimpleItem: SimpleItem{
 				Name: "Bow",
 				Type: "Weapon",
 			},
 		},
-		&Item{
+		{
 			SimpleItem: SimpleItem{
 				Name: "Saddlebag",
 				Type: "Equipment",

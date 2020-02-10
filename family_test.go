@@ -18,19 +18,19 @@ const (
 
 func TestFamilyService_Index(t *testing.T) {
 	fams := []*Family{
-		&Family{
+		{
 			SimpleFamily: SimpleFamily{
 				Name:       "Baratheon",
 				LocationID: 111,
 			},
 		},
-		&Family{
+		{
 			SimpleFamily: SimpleFamily{
 				Name:       "Lannister",
 				LocationID: 222,
 			},
 		},
-		&Family{
+		{
 			SimpleFamily: SimpleFamily{
 				Name:       "Reed",
 				LocationID: 333,

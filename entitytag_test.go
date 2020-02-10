@@ -18,19 +18,19 @@ const (
 
 func TestEntityTagService_Index(t *testing.T) {
 	tags := []*EntityTag{
-		&EntityTag{
+		{
 			SimpleEntityTag: SimpleEntityTag{
 				EntityID: 111,
 				TagID:    222,
 			},
 		},
-		&EntityTag{
+		{
 			SimpleEntityTag: SimpleEntityTag{
 				EntityID: 333,
 				TagID:    444,
 			},
 		},
-		&EntityTag{
+		{
 			SimpleEntityTag: SimpleEntityTag{
 				EntityID: 555,
 				TagID:    666,

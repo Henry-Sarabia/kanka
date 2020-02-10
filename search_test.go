@@ -13,7 +13,7 @@ const testSearch string = "test_data/search.json"
 
 func TestClient_Search(t *testing.T) {
 	rslt := []*Result{
-		&Result{
+		{
 			ID:                  1194,
 			EntityID:            80025,
 			Name:                "Shop",
@@ -28,7 +28,7 @@ func TestClient_Search(t *testing.T) {
 			CreatedBy:           5600,
 			UpdatedBy:           5600,
 		},
-		&Result{
+		{
 			ID:                  26141,
 			EntityID:            80918,
 			Name:                "The Rope Shop",
@@ -43,7 +43,7 @@ func TestClient_Search(t *testing.T) {
 			CreatedBy:           5600,
 			UpdatedBy:           5600,
 		},
-		&Result{
+		{
 			ID:                  912,
 			EntityID:            443499,
 			Name:                "At The Magic Shop",

@@ -18,19 +18,19 @@ const (
 
 func TestAttributeService_Index(t *testing.T) {
 	atrs := []*Attribute{
-		&Attribute{
+		{
 			SimpleAttribute: SimpleAttribute{
 				Name:  "Troops",
 				Value: "500",
 			},
 		},
-		&Attribute{
+		{
 			SimpleAttribute: SimpleAttribute{
 				Name:  "Population",
 				Value: "2000",
 			},
 		},
-		&Attribute{
+		{
 			SimpleAttribute: SimpleAttribute{
 				Name:  "Title",
 				Value: "King",

@@ -18,19 +18,19 @@ const (
 
 func TestEntityEventService_Index(t *testing.T) {
 	evts := []*EntityEvent{
-		&EntityEvent{
+		{
 			SimpleEntityEvent: SimpleEntityEvent{
 				Comment: "Battle of Halefort",
 				Year:    745,
 			},
 		},
-		&EntityEvent{
+		{
 			SimpleEntityEvent: SimpleEntityEvent{
 				Comment: "Razing of Shale's End",
 				Year:    728,
 			},
 		},
-		&EntityEvent{
+		{
 			SimpleEntityEvent: SimpleEntityEvent{
 				Comment: "Last stand at Halefort",
 				Year:    747,

@@ -18,21 +18,21 @@ const (
 
 func TestQuestLocationService_Index(t *testing.T) {
 	qlocs := []*QuestLocation{
-		&QuestLocation{
+		{
 			SimpleQuestLocation: SimpleQuestLocation{
 				QuestID:     111,
 				LocationID:  222,
 				Description: "An inn at the crossroads.",
 			},
 		},
-		&QuestLocation{
+		{
 			SimpleQuestLocation: SimpleQuestLocation{
 				QuestID:     333,
 				LocationID:  444,
 				Description: "A forest clearing.",
 			},
 		},
-		&QuestLocation{
+		{
 			SimpleQuestLocation: SimpleQuestLocation{
 				QuestID:     555,
 				LocationID:  666,

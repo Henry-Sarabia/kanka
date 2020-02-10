@@ -18,21 +18,21 @@ const (
 
 func TestQuestItemService_Index(t *testing.T) {
 	items := []*QuestItem{
-		&QuestItem{
+		{
 			SimpleQuestItem: SimpleQuestItem{
 				QuestID:     111,
 				ItemID:      222,
 				Description: "A crystal flask with a glowing blue liquid; golden flakes float throughout.",
 			},
 		},
-		&QuestItem{
+		{
 			SimpleQuestItem: SimpleQuestItem{
 				QuestID:     333,
 				ItemID:      444,
 				Description: "A towering bronze shield emblazoned with a silver starburst.",
 			},
 		},
-		&QuestItem{
+		{
 			SimpleQuestItem: SimpleQuestItem{
 				QuestID:     555,
 				ItemID:      666,

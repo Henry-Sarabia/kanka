@@ -18,19 +18,19 @@ const (
 
 func TestOrganizationService_Index(t *testing.T) {
 	orgs := []*Organization{
-		&Organization{
+		{
 			SimpleOrganization: SimpleOrganization{
 				Name: "Golden Company",
 				Type: "Company",
 			},
 		},
-		&Organization{
+		{
 			SimpleOrganization: SimpleOrganization{
 				Name: "Iron Bank",
 				Type: "Bank",
 			},
 		},
-		&Organization{
+		{
 			SimpleOrganization: SimpleOrganization{
 				Name: "Brotherhood of Banners",
 				Type: "Company",

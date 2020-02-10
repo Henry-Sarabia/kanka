@@ -18,19 +18,19 @@ const (
 
 func TestEntityNoteService_Index(t *testing.T) {
 	notes := []*EntityNote{
-		&EntityNote{
+		{
 			SimpleEntityNote: SimpleEntityNote{
 				Name:     "Memories",
 				EntityID: 111,
 			},
 		},
-		&EntityNote{
+		{
 			SimpleEntityNote: SimpleEntityNote{
 				Name:     "Secrets",
 				EntityID: 222,
 			},
 		},
-		&EntityNote{
+		{
 			SimpleEntityNote: SimpleEntityNote{
 				Name:     "Stashes",
 				EntityID: 333,

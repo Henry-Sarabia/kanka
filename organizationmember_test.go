@@ -17,7 +17,7 @@ const (
 
 func TestOrganizationMemberService_Index(t *testing.T) {
 	mems := []*OrganizationMember{
-		&OrganizationMember{
+		{
 			SimpleOrganizationMember: SimpleOrganizationMember{
 				CharacterID:    118490,
 				IsPrivate:      false,
@@ -26,7 +26,7 @@ func TestOrganizationMemberService_Index(t *testing.T) {
 			},
 			ID: 42070,
 		},
-		&OrganizationMember{
+		{
 			SimpleOrganizationMember: SimpleOrganizationMember{
 				CharacterID:    126247,
 				IsPrivate:      false,
@@ -35,7 +35,7 @@ func TestOrganizationMemberService_Index(t *testing.T) {
 			},
 			ID: 48013,
 		},
-		&OrganizationMember{
+		{
 			SimpleOrganizationMember: SimpleOrganizationMember{
 				CharacterID:    126248,
 				IsPrivate:      false,

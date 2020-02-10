@@ -18,19 +18,19 @@ const (
 
 func TestRaceService_Index(t *testing.T) {
 	races := []*Race{
-		&Race{
+		{
 			SimpleRace: SimpleRace{
 				Name: "Human",
 				Type: "Bipedal",
 			},
 		},
-		&Race{
+		{
 			SimpleRace: SimpleRace{
 				Name: "Halfling",
 				Type: "Bipedal",
 			},
 		},
-		&Race{
+		{
 			SimpleRace: SimpleRace{
 				Name: "Centaur",
 				Type: "Quadrapedal",

@@ -33,19 +33,19 @@ func testClient(status int, resp io.Reader) (*Client, *httptest.Server) {
 
 func TestCharacterService_Index(t *testing.T) {
 	chars := []*Character{
-		&Character{
+		{
 			SimpleCharacter: SimpleCharacter{
 				Name:  "Jon Snow",
 				Title: "Bastard of Winterfell",
 			},
 		},
-		&Character{
+		{
 			SimpleCharacter: SimpleCharacter{
 				Name:  "Sansa Stark",
 				Title: "Lady of Winterfell",
 			},
 		},
-		&Character{
+		{
 			SimpleCharacter: SimpleCharacter{
 				Name:  "Daenerys Targaryen",
 				Title: "Mother of Dragons",
@@ -171,7 +171,7 @@ func TestCharacterService_Get(t *testing.T) {
 		UpdatedBy:      5600,
 		Traits: Traits{
 			Data: []*Trait{
-				&Trait{
+				{
 					ID:           85283,
 					Name:         "Fears",
 					Entry:        "Meteors",
@@ -179,7 +179,7 @@ func TestCharacterService_Get(t *testing.T) {
 					IsPrivate:    false,
 					DefaultOrder: 0,
 				},
-				&Trait{
+				{
 					ID:           85284,
 					Name:         "Goals",
 					Entry:        "Create a world-changing invention",
@@ -187,7 +187,7 @@ func TestCharacterService_Get(t *testing.T) {
 					IsPrivate:    false,
 					DefaultOrder: 1,
 				},
-				&Trait{
+				{
 					ID:           85285,
 					Name:         "Mannerisms",
 					Entry:        "Goes on a lot of tangents; Speaks rapidly",
@@ -195,7 +195,7 @@ func TestCharacterService_Get(t *testing.T) {
 					IsPrivate:    false,
 					DefaultOrder: 2,
 				},
-				&Trait{
+				{
 					ID:           85286,
 					Name:         "Traits",
 					Entry:        "Talkative\r\nBubbly",
@@ -203,7 +203,7 @@ func TestCharacterService_Get(t *testing.T) {
 					IsPrivate:    false,
 					DefaultOrder: 3,
 				},
-				&Trait{
+				{
 					ID:           85287,
 					Name:         "Hair",
 					Entry:        "Pinks",
@@ -211,7 +211,7 @@ func TestCharacterService_Get(t *testing.T) {
 					IsPrivate:    false,
 					DefaultOrder: 0,
 				},
-				&Trait{
+				{
 					ID:           85288,
 					Name:         "Eyes",
 					Entry:        "Green",
@@ -219,7 +219,7 @@ func TestCharacterService_Get(t *testing.T) {
 					IsPrivate:    false,
 					DefaultOrder: 1,
 				},
-				&Trait{
+				{
 					ID:           85289,
 					Name:         "Skin",
 					Entry:        "Fair",

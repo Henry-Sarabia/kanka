@@ -18,21 +18,21 @@ const (
 
 func TestQuestCharacterService_Index(t *testing.T) {
 	qchs := []*QuestCharacter{
-		&QuestCharacter{
+		{
 			SimpleQuestCharacter: SimpleQuestCharacter{
 				QuestID:     111,
 				CharacterID: 222,
 				Role:        "Hero",
 			},
 		},
-		&QuestCharacter{
+		{
 			SimpleQuestCharacter: SimpleQuestCharacter{
 				QuestID:     333,
 				CharacterID: 444,
 				Role:        "Goddess",
 			},
 		},
-		&QuestCharacter{
+		{
 			SimpleQuestCharacter: SimpleQuestCharacter{
 				QuestID:     555,
 				CharacterID: 666,

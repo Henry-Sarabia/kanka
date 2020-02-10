@@ -18,19 +18,19 @@ const (
 
 func TestEventService_Index(t *testing.T) {
 	evts := []*Event{
-		&Event{
+		{
 			SimpleEvent: SimpleEvent{
 				Name: "Bloom's Peak",
 				Type: "Festival",
 			},
 		},
-		&Event{
+		{
 			SimpleEvent: SimpleEvent{
 				Name: "Pelor's Day",
 				Type: "Holy Day",
 			},
 		},
-		&Event{
+		{
 			SimpleEvent: SimpleEvent{
 				Name: "Mt. Dooom Erupts",
 				Type: "Natural Disaster",
