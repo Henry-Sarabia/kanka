@@ -5,7 +5,7 @@
 Manage your [Kanka](https://kanka.io/en-US) campaign or build tools for other
 creators with the thoroughly tested and documented **kanka** package.
 
-The **kanka** package provides a client to handle communication with the
+The **kanka** package provides a client to handle all communication with the
 [Kanka API](https://kanka.io/en-US/docs/1.0). 
 
 The package is structured into convenient and discoverable services for 
@@ -69,7 +69,7 @@ cmps, err := c.Campaigns.Index()
 ```
 You now have access to a list of the user's campaigns via `cmps`.
 
-### Retrieving an entity
+### Retrieving An Entity
 
 To retrieve a specific entity from a campaign, use the `Get` function.
 
@@ -78,12 +78,12 @@ Take the `Quests` service for example.
 For this service, `Get` requires a campaign ID and quest ID.
 
 ```go
-qst, err := c.Quests.Get(cmpID, qstID))
+qst, err := c.Quests.Get(cmpID, qstID)
 ```
 
 The result is stored in `qst` of type `Quest`. 
 
-### Retrieving a list of entities
+### Retrieving A List Of Entities
 
 To retrieve a list of a campaign's entities of a certain type, use the `Index` function.
 
@@ -106,7 +106,7 @@ locs, err := c.Locations.Index(cmpID, t)
 The result is stored in `locs` of type `[]Location`.
 
 
-### Creating an entity
+### Creating An Entity
 
 To create a new entity, use the `Create` function.
 
@@ -128,9 +128,9 @@ The `Create` functions return the newly created entity back to the caller.
 
 This example simply discards the value.
 
-### Updating an entity
+### Updating An Entity
 
-To update an entity, use the `Update` function.
+To update an existing entity, use the `Update` function.
 
 Take `Items` for example.
 
@@ -148,10 +148,10 @@ _, err := c.Items.Update(cmpID, item)
 ```
 The `Update` functions return the updated entity back to the caller.
 
-This example simply discard the value.
+This example simply discards the value.
 
 
-### Deleting an entity
+### Deleting An Entity
 
 To delete an entity, use the `Delete` function.
 
@@ -163,9 +163,9 @@ For this service, `Delete` requires a campaign ID and a journal ID.
 err := c.Journals.Delete(cmpID, jrnID)
 ```
 
-### Rate limits, errors, and you
+### Rate Limits, Errors, And You
 
-The Kanka API is rate limited. For the most recent and accurate information,
+The Kanka API is rate limited. For the most accurate and updated information,
 please visit the Kanka [documentation](https://kanka.io/en-US/docs/1.0/setup#endpoints). 
 
 If one of your requests to the Kanka API fails due to the rate limit or other temporary reason,
