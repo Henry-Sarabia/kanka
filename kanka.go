@@ -123,7 +123,7 @@ func (c *Client) send(req *http.Request, result interface{}) error {
 	defer resp.Body.Close()
 
 	if !isSuccess(resp.StatusCode) {
-		return &ServerError{code: resp.StatusCode, status: resp.Status, temporary: isTemporary(resp.StatusCode)}
+		return &serverError{code: resp.StatusCode, status: resp.Status, temporary: isTemporary(resp.StatusCode)}
 	}
 
 	b, err := ioutil.ReadAll(resp.Body)
@@ -209,7 +209,7 @@ func (c *Client) delete(end endpoint) error {
 	defer resp.Body.Close()
 
 	if !isSuccess(resp.StatusCode) {
-		return &ServerError{code: resp.StatusCode, status: resp.Status, temporary: isTemporary(resp.StatusCode)}
+		return &serverError{code: resp.StatusCode, status: resp.Status, temporary: isTemporary(resp.StatusCode)}
 	}
 
 	return nil

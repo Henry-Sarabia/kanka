@@ -5,20 +5,20 @@ import (
 	"net/http"
 )
 
-// ServerError represents an error originating from another server.
-type ServerError struct {
+// serverError represents an error originating from another server.
+type serverError struct {
 	code      int
 	status    string
 	temporary bool
 }
 
 // Error returns the status message of an error.
-func (e *ServerError) Error() string {
+func (e *serverError) Error() string {
 	return fmt.Sprintf("server responded with status '%s'", e.status)
 }
 
 // Temporary returns true if the error is temporary.
-func (e *ServerError) Temporary() bool {
+func (e *serverError) Temporary() bool {
 	return e.temporary
 }
 
