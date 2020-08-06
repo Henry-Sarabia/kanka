@@ -1,6 +1,6 @@
 # kanka 
 
-[![GoDoc](https://godoc.org/github.com/Henry-Sarabia/kanka?status.svg)](https://godoc.org/github.com/Henry-Sarabia/kanka) [![Build Status](https://travis-ci.com/Henry-Sarabia/kanka.svg?branch=master)](https://travis-ci.com/Henry-Sarabia/kanka) [![Coverage Status](https://coveralls.io/repos/github/Henry-Sarabia/kanka/badge.svg?branch=master)](https://coveralls.io/github/Henry-Sarabia/kanka?branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/Henry-Sarabia/kanka)](https://goreportcard.com/report/github.com/Henry-Sarabia/kanka)
+[![PkgGoDev](https://pkg.go.dev/badge/Henry-Sarabia/kanka)](https://pkg.go.dev/Henry-Sarabia/kanka) [![Build Status](https://travis-ci.com/Henry-Sarabia/kanka.svg?branch=master)](https://travis-ci.com/Henry-Sarabia/kanka) [![Coverage Status](https://coveralls.io/repos/github/Henry-Sarabia/kanka/badge.svg?branch=master)](https://coveralls.io/github/Henry-Sarabia/kanka?branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/Henry-Sarabia/kanka)](https://goreportcard.com/report/github.com/Henry-Sarabia/kanka)
 
 Manage your [Kanka](https://kanka.io/en-US) campaign or build tools for other
 creators with the thoroughly tested and documented **kanka** package.
